@@ -12,6 +12,7 @@ CREATE TABLE Photo (
 	id SERIAL NOT NULL,
   user INT NOT NULL,
   url VARCHAR(150) NOT NULL,
+  is_valid BOOLEAN NOT NULL default TRUE,
   PRIMARY KEY (id),
   FOREIGN KEY (user) REFERENCES User  
 );
@@ -137,26 +138,26 @@ CREATE TABLE Activity (
 );
 
 CREATE TABLE GoldUser(
-  user INT NOT NULL;
-  cpf CHAR(11) NOT NULL UNIQUE;
-  expiresAt  DATA NOT NULL;
-  street VARCHAR(80) NOT NULL;
-  addressNumber smallint NOT NULL;
-  city VARCHAR(50) NOT NULL;
-  uf CHAR(2) NOT NULL CHECK(uf in ('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'));
-  cep CHAR(8) NOT NULL;
-  PRIMARY KEY (user);
-  FOREIGN KEY (user) REFERENCES User;
+  user INT NOT NULL,
+  cpf CHAR(11) NOT NULL UNIQUE,
+  expiresAt  DATA NOT NULL,
+  street VARCHAR(80) NOT NULL,
+  addressNumber smallint NOT NULL,
+  city VARCHAR(50) NOT NULL,
+  uf CHAR(2) NOT NULL CHECK(uf in ('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO')),
+  cep CHAR(8) NOT NULL,
+  PRIMARY KEY (user),
+  FOREIGN KEY (user) REFERENCES User,
 );
 
 CREATE TABLE Card(
-  id SERIAL NOT NULL;
-  user INT NOT NULL;
-  name VARCHAR(40) NOT NULL;
-  number CHAR(16) NOT NULL;
-  expirationDate DATE NOT NULL;
-  PRIMARY KEY (id);
-  FOREIGN KEY (user) REFERENCES User;
+  id SERIAL NOT NULL,
+  user INT NOT NULL,
+  name VARCHAR(40) NOT NULL,
+  number CHAR(16) NOT NULL,
+  expirationDate DATE NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user) REFERENCES User,
 );
 
 
