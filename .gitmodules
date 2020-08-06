@@ -1,0 +1,3 @@
+[submodule "stinder-data-bot"]
+	path = stinder-data-bot
+	url = git@github.com:AlencarDC/stinder-data-bot.git
