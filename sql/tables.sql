@@ -91,14 +91,6 @@ CREATE TABLE Developer (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE GameGenre (
-	game INT NOT NULL,
-  genre INT NOT NULL,
-  PRIMARY KEY (game, genre),
-  FOREIGN KEY (game) REFERENCES Game,
-  FOREIGN KEY (genre) REFERENCES Genre
-);
-
 CREATE TABLE Game (
 	id SERIAL NOT NULL,
   developer INT NOT NULL,
@@ -109,6 +101,13 @@ CREATE TABLE Game (
   FOREIGN KEY (developer) REFERENCES Developer
 );
 
+CREATE TABLE GameGenre (
+	game INT NOT NULL,
+  genre INT NOT NULL,
+  PRIMARY KEY (game, genre),
+  FOREIGN KEY (game) REFERENCES Game,
+  FOREIGN KEY (genre) REFERENCES Genre
+);
 
 -- Game faz parte da chave primaria????
 CREATE TABLE Achievement (
