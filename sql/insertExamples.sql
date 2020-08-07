@@ -23,11 +23,13 @@ INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALU
 INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (2,'22222222222','2020-12-29','Alameda Vespúcio', 25, 'Porto Alegre', 'RS', '90550031'); 
 INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (3,'33333333333','2020-09-29','Avenida Dom Pedro', 35, 'São Paulo', 'SP', '08090284'); 
 
+INSERT INTO Card(userId,name,number,expirationDate) VALUES (1,'Mastercard', '1234567890123456','2027-08-07');
+INSERT INTO Card(userId,name,number,expirationDate) VALUES (2,'Visa', '9244567894125456','2027-09-07');
+INSERT INTO Card(userId,name,number,expirationDate) VALUES (3,'Visa', '8888888888888888','2027-10-29');
+
 INSERT INTO Photo(userid, url, isValid) VALUES (1, 'https://avatars1.githubusercontent.com/u/16635772?s=460&u=9c2dab803275c232d8ceae334b85d14c76bb5f7e&v=4', true);
 INSERT INTO Photo(userid, url, isValid) VALUES (2, 'https://bit.ly/2DmeLer', true);
 INSERT INTO Photo(userid, url, isValid) VALUES (3, 'https://pm1.narvii.com/6781/44a59d1ed4f92109ae365c462adbc7490cc0c720v2_00.jpg', true);
-
-
 
 INSERT INTO Developer(name, thumbnail) VALUES ('Valve', 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/5f/5f4b7a6439548f5513fc72968dae2217309e3d54_full.jpg');
 INSERT INTO Developer(name, thumbnail) VALUES ('ConcernedApe', 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/ea/eaff8e24ad01c6d6a80064c8a5a46b81210492e3_full.jpg');
