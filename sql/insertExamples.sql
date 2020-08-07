@@ -19,6 +19,10 @@ INSERT INTO Message(match,sender, text) VALUES (1,1,'Oi linda, vi que você joga
 INSERT INTO Message(match,sender, text) VALUES (1,3,'Isso mesmo, nada peita minha awp amado');
 INSERT INTO Message(match,sender, text) VALUES (1,1,'Vamo ver então, isso é pq vc n conhece o costinha pinada violenta');
 
+INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (1,'11111111111','2020-11-29','Travessa Jaguarão', 0, 'Teutônia', 'RS', '95890000');
+INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (2,'22222222222','2020-12-29','Alameda Vespúcio', 25, 'Porto Alegre', 'RS', '90550031'); 
+INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (3,'33333333333','2020-09-29','Avenida Dom Pedro', 35, 'São Paulo', 'SP', '08090284'); 
+
 INSERT INTO Photo(userid, url, isValid) VALUES (1, 'https://avatars1.githubusercontent.com/u/16635772?s=460&u=9c2dab803275c232d8ceae334b85d14c76bb5f7e&v=4', true);
 INSERT INTO Photo(userid, url, isValid) VALUES (2, 'https://bit.ly/2DmeLer', true);
 INSERT INTO Photo(userid, url, isValid) VALUES (3, 'https://pm1.narvii.com/6781/44a59d1ed4f92109ae365c462adbc7490cc0c720v2_00.jpg', true);
