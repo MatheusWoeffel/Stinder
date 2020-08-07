@@ -1,1 +1,2 @@
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('alencar.costa@inf.ufrgs.br', 'alencar.costa', 'Alencar da Costa', '1999-03-09', 'Soco, soco, bate, bate\nSoco, soco, vira, vira\nSoco, bate, soco, vira\nSoco, bate, vira', 'm');
+INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('mwcamargo@inf.ufrgs.br', 'seninhaBrabo', 'Matheus Woeffel', '1998-29-10', 'Errados são aqueles que chegam no bagulho, tá ligado? Sem saber como é a segurança do ambiente.', 'm');
