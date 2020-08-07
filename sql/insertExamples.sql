@@ -62,3 +62,6 @@ INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (2, 1, '2
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (2, 2, '2020-01-19 14:20:00', 9);
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (3, 2, '2020-07-15 14:20:00', 323);
 
+INSERT INTO Activity(userId,type,game,photo) VALUES (2,'g',1,NULL);
+INSERT INTO Activity(userId,type,game,photo) VALUES (1,'p',NULL,1);
+INSERT INTO Activity(userId,type,game,photo) VALUES (3,'p',NULL,3);
