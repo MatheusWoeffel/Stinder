@@ -1,3 +1,19 @@
+DROP TABLE IF EXISTS message;
+DROP TABLE IF EXISTS userAchievement;
+DROP TABLE IF EXISTS goldUser;
+DROP TABLE IF EXISTS classification;
+DROP TABLE IF EXISTS gameGenre;
+DROP TABLE IF EXISTS match;
+DROP TABLE IF EXISTS achievement;
+DROP TABLE IF EXISTS activity;
+DROP TABLE IF EXISTS genre;
+DROP TABLE IF EXISTS card;
+DROP TABLE IF EXISTS userGame;
+DROP TABLE IF EXISTS game;
+DROP TABLE IF EXISTS developer;
+DROP TABLE IF EXISTS photo;
+DROP TABLE IF EXISTS appUser;
+
 CREATE TABLE AppUser (
 	id SERIAL NOT NULL,
   email VARCHAR(80) NOT NULL UNIQUE,
@@ -75,14 +91,6 @@ CREATE TABLE Developer (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE GameGenre (
-	game INT NOT NULL,
-  genre INT NOT NULL,
-  PRIMARY KEY (game, genre),
-  FOREIGN KEY (game) REFERENCES Game,
-  FOREIGN KEY (genre) REFERENCES Genre
-);
-
 CREATE TABLE Game (
 	id SERIAL NOT NULL,
   developer INT NOT NULL,
@@ -93,6 +101,13 @@ CREATE TABLE Game (
   FOREIGN KEY (developer) REFERENCES Developer
 );
 
+CREATE TABLE GameGenre (
+	game INT NOT NULL,
+  genre INT NOT NULL,
+  PRIMARY KEY (game, genre),
+  FOREIGN KEY (game) REFERENCES Game,
+  FOREIGN KEY (genre) REFERENCES Genre
+);
 
 -- Game faz parte da chave primaria????
 CREATE TABLE Achievement (
