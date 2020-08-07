@@ -24,7 +24,7 @@ CREATE TABLE Classification (
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (userFrom, userTo),
   FOREIGN KEY (userFrom) REFERENCES AppUser,
-  FOREIGN KEY (userTo) REFERENCES AppUser,
+  FOREIGN KEY (userTo) REFERENCES AppUser
 );
 
 CREATE TABLE Match (
@@ -36,7 +36,7 @@ CREATE TABLE Match (
   PRIMARY KEY (id),
   UNIQUE (userOne, userTwo),
   FOREIGN KEY (userOne) REFERENCES AppUser,
-  FOREIGN KEY (userTwo) REFERENCES AppUser,
+  FOREIGN KEY (userTwo) REFERENCES AppUser
 );
 
 --CREATE TABLE Match (
@@ -58,7 +58,7 @@ CREATE TABLE Message (
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
   FOREIGN KEY (match) REFERENCES Match,
-  FOREIGN KEY (sender) REFERENCES AppUser,
+  FOREIGN KEY (sender) REFERENCES AppUser
 );
 
 CREATE TABLE Genre (
@@ -79,7 +79,7 @@ CREATE TABLE GameGenre (
   genre INT NOT NULL,
   PRIMARY KEY (game, genre),
   FOREIGN KEY (game) REFERENCES Game,
-  FOREIGN KEY (genre) REFERENCES Genre,
+  FOREIGN KEY (genre) REFERENCES Genre
 );
 
 CREATE TABLE Game (
@@ -105,12 +105,12 @@ CREATE TABLE Achievement (
 );
 
 CREATE TABLE UserAchievement (
-	user INT NOT NULL,
+	userId INT NOT NULL,
   achievement INT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
-  PRIMARY KEY (user, achievement),
-  FOREIGN KEY (user) REFERENCES AppUser,
-  FOREIGN KEY (achievement) REFERENCES Achievement,
+  PRIMARY KEY (userId, achievement),
+  FOREIGN KEY (userId) REFERENCES AppUser,
+  FOREIGN KEY (achievement) REFERENCES Achievement
 );
 
 CREATE TABLE UserGame (
@@ -120,7 +120,7 @@ CREATE TABLE UserGame (
   hoursPlayed INT NOT NULL DEFAULT (0),
   PRIMARY KEY (userId, game),
   FOREIGN KEY (userId) REFERENCES AppUser,
-  FOREIGN KEY (game) REFERENCES Game,
+  FOREIGN KEY (game) REFERENCES Game
 );
 
 -- VERIFICAR SE ISSO TA CORRETO
@@ -134,20 +134,20 @@ CREATE TABLE Activity (
   PRIMARY KEY (id),
   FOREIGN KEY (userId) REFERENCES AppUser,
   FOREIGN KEY (game) REFERENCES Game,
-  FOREIGN KEY (photo) REFERENCES Photo,
+  FOREIGN KEY (photo) REFERENCES Photo
 );
 
 CREATE TABLE GoldUser(
   userId INT NOT NULL,
   cpf CHAR(11) NOT NULL UNIQUE,
-  expiresAt  DATA NOT NULL,
+  expiresAt  DATE NOT NULL,
   street VARCHAR(80) NOT NULL,
   addressNumber smallint NOT NULL,
   city VARCHAR(50) NOT NULL,
   uf CHAR(2) NOT NULL CHECK(uf in ('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO')),
   cep CHAR(8) NOT NULL,
   PRIMARY KEY (userId),
-  FOREIGN KEY (userId) REFERENCES AppUser,
+  FOREIGN KEY (userId) REFERENCES AppUser
 );
 
 CREATE TABLE Card(
@@ -157,7 +157,7 @@ CREATE TABLE Card(
   number CHAR(16) NOT NULL,
   expirationDate DATE NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (userId) REFERENCES AppUser,
+  FOREIGN KEY (userId) REFERENCES AppUser
 );
 
 
