@@ -2,6 +2,7 @@ CREATE TABLE AppUser (
 	id SERIAL NOT NULL,
   email VARCHAR(80) NOT NULL UNIQUE,
   password VARCHAR(16) NOT NULL,
+  name VARCHAR(50) NOT NULL,
   birthdate DATE NOT NULL,
   description VARCHAR(500),
   gender CHAR(1) NOT NULL CHECK(gender IN ('f', 'm')),
