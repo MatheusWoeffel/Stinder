@@ -1,4 +1,4 @@
-CREATE TABLE User (
+CREATE TABLE AppUser (
 	id SERIAL NOT NULL,
   email VARCHAR(80) NOT NULL UNIQUE,
   password VARCHAR(16) NOT NULL,
@@ -10,11 +10,11 @@ CREATE TABLE User (
 
 CREATE TABLE Photo (
 	id SERIAL NOT NULL,
-  user INT NOT NULL,
+  userId INT NOT NULL,
   url VARCHAR(150) NOT NULL,
   is_valid BOOLEAN NOT NULL default TRUE,
   PRIMARY KEY (id),
-  FOREIGN KEY (user) REFERENCES User  
+  FOREIGN KEY (userId) REFERENCES AppUser  
 );
 
 CREATE TABLE Classification (
@@ -23,8 +23,8 @@ CREATE TABLE Classification (
   type CHAR(1) NOT NULL CHECK(type IN ('d', 'l', 's')),
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (userFrom, userTo),
-  FOREIGN KEY (userFrom) REFERENCES User,
-  FOREIGN KEY (userTo) REFERENCES User,
+  FOREIGN KEY (userFrom) REFERENCES AppUser,
+  FOREIGN KEY (userTo) REFERENCES AppUser,
 );
 
 CREATE TABLE Match (
@@ -35,8 +35,8 @@ CREATE TABLE Match (
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
   UNIQUE (userOne, userTwo),
-  FOREIGN KEY (userOne) REFERENCES User,
-  FOREIGN KEY (userTwo) REFERENCES User,
+  FOREIGN KEY (userOne) REFERENCES AppUser,
+  FOREIGN KEY (userTwo) REFERENCES AppUser,
 );
 
 --CREATE TABLE Match (
@@ -58,7 +58,7 @@ CREATE TABLE Message (
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
   FOREIGN KEY (match) REFERENCES Match,
-  FOREIGN KEY (sender) REFERENCES User,
+  FOREIGN KEY (sender) REFERENCES AppUser,
 );
 
 CREATE TABLE Genre (
@@ -109,36 +109,36 @@ CREATE TABLE UserAchievement (
   achievement INT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (user, achievement),
-  FOREIGN KEY (user) REFERENCES User,
+  FOREIGN KEY (user) REFERENCES AppUser,
   FOREIGN KEY (achievement) REFERENCES Achievement,
 );
 
 CREATE TABLE UserGame (
-	user INT NOT NULL,
+	userId INT NOT NULL,
   game INT NOT NULL,
   lastPlayedDate TIMESTAMP NOT NULL,
   hoursPlayed INT NOT NULL DEFAULT (0),
-  PRIMARY KEY (user, game),
-  FOREIGN KEY (user) REFERENCES User,
+  PRIMARY KEY (userId, game),
+  FOREIGN KEY (userId) REFERENCES AppUser,
   FOREIGN KEY (game) REFERENCES Game,
 );
 
 -- VERIFICAR SE ISSO TA CORRETO
 CREATE TABLE Activity (
 	id SERIAL NOT NULL,
-  user INT NOT NULL,
+  userId INT NOT NULL,
   type CHAR(1) NOT NULL CHECK(type IN ('p', 'g')),
   game INT,
   photo INT,
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
-  FOREIGN KEY (user) REFERENCES User,
+  FOREIGN KEY (userId) REFERENCES AppUser,
   FOREIGN KEY (game) REFERENCES Game,
   FOREIGN KEY (photo) REFERENCES Photo,
 );
 
 CREATE TABLE GoldUser(
-  user INT NOT NULL,
+  userId INT NOT NULL,
   cpf CHAR(11) NOT NULL UNIQUE,
   expiresAt  DATA NOT NULL,
   street VARCHAR(80) NOT NULL,
@@ -146,18 +146,18 @@ CREATE TABLE GoldUser(
   city VARCHAR(50) NOT NULL,
   uf CHAR(2) NOT NULL CHECK(uf in ('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO')),
   cep CHAR(8) NOT NULL,
-  PRIMARY KEY (user),
-  FOREIGN KEY (user) REFERENCES User,
+  PRIMARY KEY (userId),
+  FOREIGN KEY (userId) REFERENCES AppUser,
 );
 
 CREATE TABLE Card(
   id SERIAL NOT NULL,
-  user INT NOT NULL,
+  userId INT NOT NULL,
   name VARCHAR(40) NOT NULL,
   number CHAR(16) NOT NULL,
   expirationDate DATE NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (user) REFERENCES User,
+  FOREIGN KEY (userId) REFERENCES AppUser,
 );
 
 
