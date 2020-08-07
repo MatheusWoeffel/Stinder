@@ -18,3 +18,7 @@ INSERT INTO Match(userOne,userTwo, isValid) VALUES (2,4,true);
 INSERT INTO Message(match,sender, text) VALUES (1,1,'Oi linda, vi que você joga cs GO');
 INSERT INTO Message(match,sender, text) VALUES (1,3,'Isso mesmo, nada peita minha awp amado');
 INSERT INTO Message(match,sender, text) VALUES (1,1,'Vamo ver então, isso é pq vc n conhece o costinha pinada violenta');
+
+INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (1,'11111111111','2020-11-29','Travessa Jaguarão', 0, 'Teutônia', 'RS', '95890000');
+INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (2,'22222222222','2020-12-29','Alameda Vespúcio', 25, 'Porto Alegre', 'RS', '90550031'); 
+INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (3,'33333333333','2020-09-29','Avenida Dom Pedro', 35, 'São Paulo', 'SP', '08090284'); 
