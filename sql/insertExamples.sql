@@ -49,9 +49,31 @@ INSERT INTO GameGenre(game, genre) VALUES (3, 4);
 INSERT INTO GameGenre(game, genre) VALUES (3, 5);
 INSERT INTO GameGenre(game, genre) VALUES (3, 6);
 
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Greenhorn', 'Earn 15,000g', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/413150/dac82a85ceb1493bb2155d41890b4a6099f5eaa5.jpg', 1);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Cowpoke', 'Earn 50,000g', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/413150/2a5c84271214a05435ea1c7a60bacc1cbbc5fa5a.jpg', 1);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Fisherman', 'Catch 10 different fish.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/413150/e3c6269d906e909415d31d5b7962166c0951509d.jpg', 1);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Mother Catch', 'Catch 100 fish.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/413150/cdc37596680321cfc1f5aef5f6c02e8384d07d62.jpg', 1);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Moving Up', 'Upgrade your house.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/413150/67f2c064873468b80c57218f0992c15f7d2fe83e.jpg', 1);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Points in Your Favor', 'Inflict 2,500 total points of damage to enemies', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/55650ec8f0cec4ea9b80d10e5ff420904b2a52a9.jpg', 2);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Shot With Their Pants Down', 'Kill an enemy while they are reloading', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/8348876e42a26000ec596a690ee962ff441f3d1f.jpg', 2);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('The Unstoppable Force', 'Kill four enemies within a single round', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/9f0100bf4168376212331c5177f3d22a30df12ae.jpg', 2);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Body Bagger', 'Kill 25 enemies', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/b11ef0453168cd3d10684e184004f71dcc0faa82.jpg', 2);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Newb World Order', 'Win ten rounds', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/9c759a9201a6fd54539f639e3815aa09a7c92d59.jpg', 2);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Mercy Killing', 'Kill Brutus, Warden of Axiom Prison.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/238960/daa9f834d636f840070d48f1aeb0b785f92905b3.jpg', 3);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('The Star of Wraeclast', 'Kill Merveil, the Siren.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/238960/e630c876dc24194e16eb2bcbdc936b18897ecda9.jpg', 3);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('One of a Kind', 'Equip a Unique item.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/238960/cba68127f72c1920934fec0215ed0f82ab7258fd.jpg', 3);
+INSERT INTO Achievement(name, description, thumbnailUrl, game) VALUES ('Cryomancer', 'Shatter 5 monsters with a single action.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/238960/e4e6440cd98a0f08f7906290fc952f6984b34867.jpg', 3);
+
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (1, 2, '2020-07-22 14:20:00', 1337);
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (1, 1, '2019-03-22 14:20:00', 13);
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (1, 3, '2020-04-217 14:20:00', 666);
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (2, 1, '2020-07-15 14:20:00', 1000);
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (2, 2, '2020-01-19 14:20:00', 9);
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (3, 2, '2020-07-15 14:20:00', 323);
+
+INSERT INTO UserAchievement(userid, achievement) VALUES (1, 7)
+INSERT INTO UserAchievement(userid, achievement) VALUES (1, 8)
+INSERT INTO UserAchievement(userid, achievement) VALUES (1, 9);
+INSERT INTO UserAchievement(userid, achievement) VALUES (2, 1);
+INSERT INTO UserAchievement(userid, achievement) VALUES (2, 2);
+INSERT INTO UserAchievement(userid, achievement) VALUES (2, 3);
