@@ -29,7 +29,7 @@ CREATE TABLE Photo (
 	id SERIAL NOT NULL,
   userId INT NOT NULL,
   url VARCHAR(150) NOT NULL,
-  is_valid BOOLEAN NOT NULL default TRUE,
+  isValid BOOLEAN NOT NULL default TRUE,
   PRIMARY KEY (id),
   FOREIGN KEY (userId) REFERENCES AppUser  
 );
