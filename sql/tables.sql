@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS photo;
 DROP TABLE IF EXISTS appUser;
 
 CREATE TABLE AppUser (
-	id SERIAL NOT NULL,
+  id SERIAL NOT NULL,
   email VARCHAR(80) NOT NULL UNIQUE,
   password VARCHAR(16) NOT NULL,
   name VARCHAR(50) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE AppUser (
 );
 
 CREATE TABLE Photo (
-	id SERIAL NOT NULL,
+  id SERIAL NOT NULL,
   userId INT NOT NULL,
   url VARCHAR(150) NOT NULL,
   isValid BOOLEAN NOT NULL default TRUE,
@@ -35,7 +35,7 @@ CREATE TABLE Photo (
 );
 
 CREATE TABLE Classification (
-	userFrom INT NOT NULL,
+  userFrom INT NOT NULL,
   userTo INT NOT NULL,
   type CHAR(1) NOT NULL CHECK(type IN ('d', 'l', 's')),
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -46,7 +46,7 @@ CREATE TABLE Classification (
 
 CREATE TABLE Match (
   id SERIAL NOT NULL,
-	userOne INT NOT NULL,
+  userOne INT NOT NULL,
   userTwo INT NOT NULL,
   isValid BOOLEAN NOT NULL DEFAULT (true),
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -56,19 +56,9 @@ CREATE TABLE Match (
   FOREIGN KEY (userTwo) REFERENCES AppUser
 );
 
---CREATE TABLE Match (
---	userOne INT NOT NULL,
---  userTwo INT NOT NULL,
---  isValid BOOLEAN NOT NULL DEFAULT (true),
---  createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
---  PRIMARY KEY (userOne, userTwo),
---  FOREIGN KEY (userOne) REFERENCES User,
---  FOREIGN KEY (userTwo) REFERENCES User,
---);
-
 
 CREATE TABLE Message (
-	id SERIAL NOT NULL,
+  id SERIAL NOT NULL,
   match INT NOT NULL,
   sender INT NOT NULL,
   text VARCHAR(500) NOT NULL,
@@ -79,20 +69,20 @@ CREATE TABLE Message (
 );
 
 CREATE TABLE Genre (
-	id SERIAL NOT NULL,
+  id SERIAL NOT NULL,
   name VARCHAR(50) NOT NULL UNIQUE,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE Developer (
-	id SERIAL NOT NULL,
+  id SERIAL NOT NULL,
   name VARCHAR(50) NOT NULL UNIQUE,
   thumbnail VARCHAR(150) NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE Game (
-	id SERIAL NOT NULL,
+  id SERIAL NOT NULL,
   developer INT NOT NULL,
   name VARCHAR(50) NOT NULL UNIQUE,
   thumbnail VARCHAR(150) NOT NULL,
@@ -102,16 +92,16 @@ CREATE TABLE Game (
 );
 
 CREATE TABLE GameGenre (
-	game INT NOT NULL,
+  game INT NOT NULL,
   genre INT NOT NULL,
   PRIMARY KEY (game, genre),
   FOREIGN KEY (game) REFERENCES Game,
   FOREIGN KEY (genre) REFERENCES Genre
 );
 
--- Game faz parte da chave primaria????
+
 CREATE TABLE Achievement (
-	id SERIAL NOT NULL,
+  id SERIAL NOT NULL,
   game INT NOT NULL,
   name VARCHAR(50) NOT NULL,
   description VARCHAR(100) NOT NULL,
@@ -121,7 +111,7 @@ CREATE TABLE Achievement (
 );
 
 CREATE TABLE UserAchievement (
-	userId INT NOT NULL,
+  userId INT NOT NULL,
   achievement INT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
   PRIMARY KEY (userId, achievement),
@@ -130,7 +120,7 @@ CREATE TABLE UserAchievement (
 );
 
 CREATE TABLE UserGame (
-	userId INT NOT NULL,
+  userId INT NOT NULL,
   game INT NOT NULL,
   lastPlayedDate TIMESTAMP NOT NULL,
   hoursPlayed INT NOT NULL DEFAULT (0),
@@ -139,9 +129,9 @@ CREATE TABLE UserGame (
   FOREIGN KEY (game) REFERENCES Game
 );
 
--- VERIFICAR SE ISSO TA CORRETO
+
 CREATE TABLE Activity (
-	id SERIAL NOT NULL,
+  id SERIAL NOT NULL,
   userId INT NOT NULL,
   type CHAR(1) NOT NULL CHECK(type IN ('p', 'g')),
   game INT,
