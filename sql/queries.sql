@@ -1,10 +1,20 @@
 --Número total de achievements
-SELECT game.name, count(achievement.id) as num_achievements FROM achievement JOIN game on (game = game.id) WHERE game.name='Stardew Valley' GROUP BY game.name;
+SELECT game.name, count(achievement.id) as num_achievements
+FROM achievement 
+JOIN game ON (game = game.id) 
+WHERE game.name='Stardew Valley' 
+GROUP BY game.name;
 
 --% de realização de achievements por um dado usuário
-SELECT CAST(count(userachievement.achievement) as float) / 
-CAST((SELECT count(achievement.id) as num_achievements FROM achievement JOIN game on (game = game.id) WHERE game.name='Stardew Valley' GROUP BY game.name)as float) * 100 as achievement_percentage 
-FROM userachievement JOIN achievement ON(userachievement.achievement = achievement.id) JOIN game ON (achievement.game = game.id) WHERE game.name='Stardew Valley' and userid=2 GROUP BY game.name;
+SELECT CAST(count(userachievement.achievement) as float) / CAST(
+                                                          (SELECT count(achievement.id) as num_achievements 
+                                                          FROM achievement JOIN game ON (game = game.id) 
+                                                          WHERE game.name='Stardew Valley' 
+                                                          GROUP BY game.name)as float) * 100 as achievement_percentage 
+FROM userachievement 
+JOIN achievement ON(userachievement.achievement = achievement.id) 
+JOIN game ON (achievement.game = game.id) 
+WHERE game.name='Stardew Valley' AND userid=2 GROUP BY game.name;
 
 
 -- Atividades dos match de um determinado user.
@@ -59,13 +69,11 @@ ORDER BY Match.id, M.createdAt DESC
 -- Essa consulta retorna o ID dos usuários que não ainda não foram classificados pelo usuário logado E que
 -- possuam algum gênero de jogo em comum.
 -- O intuito dessa consulta seria trazer os IDs de usuários que podem ser mostrados durante a classificação
--- OBS: É possível remover a tabela AppUser da consulta para diminuir um JOIN. TODO!
-SELECT DISTINCT AppUser.id FROM AppUser
-INNER JOIN UserGame ON UserGame.userid = AppUser.id
+SELECT DISTINCT UserGame.userid FROM UserGame
 INNER JOIN Game ON Game.id = UserGame.game
 INNER JOIN GameGenre ON GameGenre.game = Game.id
-WHERE AppUser.id != 1 
-AND AppUser.id NOT IN (SELECT DISTINCT Classification.userTo id
+WHERE UserGame.userid != 1 
+AND UserGame.userid NOT IN (SELECT DISTINCT Classification.userTo id
                        FROM Classification 
                        WHERE Classification.userFrom = 1
                       )
@@ -75,18 +83,16 @@ AND GameGenre.genre IN (SELECT DISTINCT GameGenre.genre
                         INNER JOIN GameGenre ON GameGenre.game = Game.id
                         WHERE UserGame.userid = 1
                        )
-ORDER BY AppUser.id
+ORDER BY UserGame.userid
 
 -- Uma melhora da consulta anterior para já buscar junto os dados basicos do usuário
--- TODO: Remover a tabela AppUser, pois é desnecessária
-SELECT DISTINCT AppUser.id, B.name, B.birthdate, B.description, B.gender, B.photoId, B.url
-FROM AppUser
-INNER JOIN UserGame ON UserGame.userid = AppUser.id
+SELECT DISTINCT B.userid, B.name, B.birthdate, B.description, B.gender, B.photoId, B.url
+FROM BasicUserDetail B
+INNER JOIN UserGame ON UserGame.userid = B.userid
 INNER JOIN Game ON Game.id = UserGame.game
 INNER JOIN GameGenre ON GameGenre.game = Game.id
-INNER JOIN BasicUserDetail B ON B.userid = AppUser.id 
-WHERE AppUser.id != 1 
-AND AppUser.id NOT IN (SELECT DISTINCT Classification.userTo id
+WHERE B.userid != 1 
+AND B.userid NOT IN (SELECT DISTINCT Classification.userTo id
                        FROM Classification 
                        WHERE Classification.userFrom = 1
                       )
@@ -96,4 +102,4 @@ AND GameGenre.genre IN (SELECT DISTINCT GameGenre.genre
                         INNER JOIN GameGenre ON GameGenre.game = Game.id
                         WHERE UserGame.userid = 1
                        )
-ORDER BY AppUser.id
+ORDER BY B.userid
