@@ -158,4 +158,47 @@ JOIN match ON (message.match = match.id)
 WHERE basicuserdetail.name = 'Alencar da Costa' and (message.text ILIKE '%Oi%');
 
 
+
+
+
+
+
+
+
+
  
+-- Generos que o usuario mais joga. Totalizar as horas jogadas por genero e filtar (HAVING) 
+-- por generos que totalizar mais do que um certo numero de horas, por exemplo 1000,
+-- para classificarmos como Experts!
+SELECT UserGame.userid, Genre.name, SUM(UserGame.hoursPlayed)
+FROM UserGame
+INNER JOIN Game ON Game.id = UserGame.game
+INNER JOIN GameGenre ON GameGenre.game = Game.id
+INNER JOIN Genre ON Genre.id = GameGenre.genre
+GROUP BY UserGame.userid, Genre.name
+HAVING SUM(UserGame.hoursPlayed) >= 1000
+ORDER BY userid
+
+
+
+-- SUGESTAO: Buscar o 10 usuarios mais "famosos" do momento
+-- Os 10 usuarios com a quantidade de likes superior a media de likes por usuario
+-- Tem como alterar a consulta para contabilizar apenas os likes realizados nos ultimos 7 dias, por exemplo.
+DROP VIEW UserLikeTotal;
+
+CREATE VIEW UserLikeTotal AS 
+  SELECT userTo as userId,
+  			 COUNT(*) FILTER (WHERE type != 'd') total_positives,
+         COUNT(*) total_classifications
+  FROM Classification
+  GROUP BY userTo
+
+
+SELECT * FROM BasicUserDetail
+WHERE userId IN (SELECT userTo FROM Classification
+                 WHERE type != 'd'
+                 GROUP BY userTo
+                 HAVING COUNT(*) > (SELECT AVG(total_positives)
+                                    FROM UserLikeTotal)
+                 ORDER BY COUNT(*) DESC
+                 LIMIT 10)
