@@ -202,3 +202,20 @@ WHERE userId IN (SELECT userTo FROM Classification
                                     FROM UserLikeTotal)
                  ORDER BY COUNT(*) DESC
                  LIMIT 10)
+
+-- SUGESTAO: Detalhes dos jogos de um usuário
+SELECT UG.userid, UG.lastPlayedDate, UG.hoursPlayed, UG.game,
+G.name gameName, G.thumbnail gameThumb, G.releaseDate, G.developer, 
+D.name developerName, D.thumbnail developerThumb
+FROM UserGame UG
+INNER JOIN Game G ON G.id = UG.game
+INNER JOIN Developer D ON D.id = G.developer
+WHERE UG.hoursplayed > 0 AND UG.userid = 1
+ORDER BY UG.lastPlayedDate
+
+-- SUGESTAO: Achievements de um usuario, apenas dos jogos que ele possuir
+SELECT * FROM UserAchievement UA
+INNER JOIN Achievement A ON UA.achievement = A.id
+WHERE UA.userid = 1 AND A.game IN (SELECT game FROM UserGame
+                                          WHERE userid = 1)
+ORDER BY UA.achievement, UA.createdAt DESC 
