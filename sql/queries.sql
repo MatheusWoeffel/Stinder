@@ -34,7 +34,6 @@ WHERE A.userid IN (
 ORDER BY A.createdAt DESC
 
 
-
 -- SUGESTÃO: View que relaciona os detalhes/informações basicos de um usuário.
 -- Essas são as informações que aparecem no card de cada usuário durante a classificaçÀo.
 -- Ao clicar em um card, um nova consulta será realizada buscando todas as informações do usuário.
@@ -104,6 +103,7 @@ AND GameGenre.genre IN (SELECT DISTINCT GameGenre.genre
                        )
 ORDER BY B.userid
 
+
 --Todos os usuários que não tem nenhum jogo em comum
 SELECT id FROM appuser
 EXCEPT
@@ -112,6 +112,7 @@ SELECT DISTINCT userid from usergame where game in (SELECT game from usergame wh
 SELECT id, name from appuser as EXT where NOT EXISTS(
 	SELECT game from usergame where userid=EXT.id and game in(SELECT game from usergame where userid=1)
 );
+
 
 --Seleciona os 10 usuários com mais likes/superlikes e suas informações mais importantes
 SELECT userId, name, birthdate, description, gender, photoId, url 
@@ -137,6 +138,7 @@ and achievement.id IN(
   										WHERE appuser.name='Matheus Woeffel' --Second user name
 											);
 
+
 --Gêneros que determinado usuário jogou por mais de X horas.
 --Retorna nome do gênero e total de horas jogadas neste gênero.
 SELECT genre.name, SUM(usergame.hoursplayed) FROM usergame 
@@ -148,6 +150,8 @@ WHERE appuser.name='Matheus Woeffel' --User name here
 GROUP BY genre.name HAVING SUM (usergame.hoursplayed) >= 1000 
 ORDER BY SUM(usergame.hoursplayed) DESC;
 
+
+--Mensagens de um dado usuário que contem uma dada palavra
 SELECT  basicuserdetail.userid as userId, basicuserdetail.name as senderName, match.id as matchId, message.text as messageText
 FROM message JOIN basicuserdetail ON (message.sender = basicuserdetail.userid)
 JOIN match ON (message.match = match.id)
