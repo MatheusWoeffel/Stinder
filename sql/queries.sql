@@ -125,4 +125,17 @@ WHERE userId in(
   							LIMIT 10
 								);
 
+
+--Todos os achievements em comum entre dois usuários. 
+SELECT appuser.name, achievement.name, game.name as gamename, achievement.thumbnail, achievement.description 
+FROM userachievement JOIN achievement ON(achievement = achievement.id) 
+JOIN game ON(achievement.game = game.id)
+JOIN appuser ON(userachievement.userid = appuser.id)
+WHERE appuser.name='Matheus Woeffel' --First user name
+and achievement.id IN(
+											SELECT achievement FROM userachievement JOIN appuser ON (userachievement.userid = appuser.id)
+  										WHERE appuser.name='Matheus Woeffel' --Second user name
+											);
+
+
  
