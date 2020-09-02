@@ -137,5 +137,16 @@ and achievement.id IN(
   										WHERE appuser.name='Matheus Woeffel' --Second user name
 											);
 
+--Gêneros que determinado usuário jogou por mais de X horas.
+--Retorna nome do gênero e total de horas jogadas neste gênero.
+SELECT genre.name, SUM(usergame.hoursplayed) FROM usergame 
+JOIN appuser ON (usergame.userid = appuser.id)
+JOIN game ON (usergame.game = game.id)
+JOIN gamegenre ON (game.id = gamegenre.game)
+JOIN genre ON (gamegenre.genre = genre.id)
+WHERE appuser.name='Matheus Woeffel' --User name here
+GROUP BY genre.name HAVING SUM (usergame.hoursplayed) >= 1000 
+ORDER BY SUM(usergame.hoursplayed) DESC;
+
 
  
