@@ -103,3 +103,13 @@ AND GameGenre.genre IN (SELECT DISTINCT GameGenre.genre
                         WHERE UserGame.userid = 1
                        )
 ORDER BY B.userid
+
+--Todos os usuários que não tem nenhum jogo em comum
+SELECT id FROM appuser
+EXCEPT
+SELECT DISTINCT userid from usergame where game in (SELECT game from usergame where userid=3);
+
+SELECT id, name from appuser as EXT where NOT EXISTS(
+	SELECT game from usergame where userid=EXT.id and game in(SELECT game from usergame where userid=1)
+);
+ 
