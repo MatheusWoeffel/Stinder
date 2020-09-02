@@ -112,4 +112,17 @@ SELECT DISTINCT userid from usergame where game in (SELECT game from usergame wh
 SELECT id, name from appuser as EXT where NOT EXISTS(
 	SELECT game from usergame where userid=EXT.id and game in(SELECT game from usergame where userid=1)
 );
+
+--Seleciona os 10 usuários com mais likes/superlikes e suas informações mais importantes
+SELECT userId, name, birthdate, description, gender, photoId, url 
+FROM BasicUserDetail 
+WHERE userId in(
+								SELECT userTo FROM classification 
+  							WHERE type in ('l', 's') 
+  							GROUP BY userTo 
+  							HAVING COUNT(userTo) > 1 --Podemos mudar para algum número especifico de likes
+  							ORDER BY COUNT(userTo) DESC 
+  							LIMIT 10
+								);
+
  
