@@ -148,5 +148,10 @@ WHERE appuser.name='Matheus Woeffel' --User name here
 GROUP BY genre.name HAVING SUM (usergame.hoursplayed) >= 1000 
 ORDER BY SUM(usergame.hoursplayed) DESC;
 
+SELECT  basicuserdetail.userid as userId, basicuserdetail.name as senderName, match.id as matchId, message.text as messageText
+FROM message JOIN basicuserdetail ON (message.sender = basicuserdetail.userid)
+JOIN match ON (message.match = match.id)
+WHERE basicuserdetail.name = 'Alencar da Costa' and (message.text ILIKE '%Oi%');
+
 
  
