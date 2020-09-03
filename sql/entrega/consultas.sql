@@ -150,7 +150,7 @@ JOIN Match ON Match.id = Message.match
 WHERE BasicUserDetail.name = 'Alencar da Costa' AND (Message.text ILIKE '%Oi%');
 
 
--- TODO:Verificar se essa vai entrar
+-- TODO:Verificar se essa vai entrar e se a pesquisa vai ser por id de usuario ou nome
 -- Buscar detalhes completos dos jogos de um usuário
 SELECT UG.userid, UG.lastPlayedDate, UG.hoursPlayed, UG.game,
 G.name gameName, G.thumbnail gameThumb, G.releaseDate, G.developer, 

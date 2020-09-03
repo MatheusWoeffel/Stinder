@@ -219,3 +219,5 @@ INNER JOIN Achievement A ON UA.achievement = A.id
 WHERE UA.userid = 1 AND A.game IN (SELECT game FROM UserGame
                                           WHERE userid = 1)
 ORDER BY UA.achievement, UA.createdAt DESC 
+
+
