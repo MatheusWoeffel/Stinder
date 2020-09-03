@@ -61,11 +61,16 @@ ORDER BY B.userid;
 
 
 --Todos os usuários que não tem nenhum gênero em comum
-SELECT id, name FROM appuser as EXT where NOT EXISTS(
-	SELECT * FROM usergame JOIN gamegenre ON  (usergame.game = gamegenre.game) where userid=EXT.id and 
-  genre in (SELECT genre from usergame JOIN gamegenre ON (usergame.game = gamegenre.game) where userid=4)
-) and id != 4 --Necessário para o caso do usuário em questão não possuir jogos.(Vai dar "unmatch" em todos exceto nele mesmo);
-
+SELECT id, name 
+FROM AppUser AS EXT 
+WHERE id != 4 AND NOT EXISTS(
+  SELECT * FROM UserGame 
+  JOIN GameGenre ON GameGenre.game = UserGame.game
+  WHERE userId = EXT.id AND genre IN (SELECT DISTINCT genre
+                                  FROM UserGame 
+                                  JOIN GameGenre ON GameGenre.game = UserGame.game
+                                  WHERE userId = 4)
+); --Necessário para o caso do usuário em questão não possuir jogos.(Vai dar "unmatch" em todos exceto nele mesmo);
 
 
 
@@ -149,4 +154,27 @@ FROM UserGame UG
 INNER JOIN Game G ON G.id = UG.game
 INNER JOIN Developer D ON D.id = G.developer
 WHERE UG.hoursplayed > 0 AND UG.userid = 1
-ORDER BY UG.lastPlayedDate
+ORDER BY UG.lastPlayedDate;
+
+
+-- SUGESTAO: Buscar o 10 usuarios mais "famosos" do momento
+-- Os 10 usuarios com a quantidade de likes superior a media de likes por usuario
+-- Tem como alterar a consulta para contabilizar apenas os likes realizados nos ultimos 7 dias, por exemplo.
+DROP VIEW UserLikeTotal;
+
+CREATE VIEW UserLikeTotal AS 
+  SELECT userTo as userId,
+  			 COUNT(*) FILTER (WHERE type != 'd') total_positives,
+         COUNT(*) total_classifications
+  FROM Classification
+  GROUP BY userTo
+
+
+SELECT * FROM BasicUserDetail
+WHERE userId IN (SELECT userTo FROM Classification
+                 WHERE type != 'd'
+                 GROUP BY userTo
+                 HAVING COUNT(*) > (SELECT AVG(total_positives)
+                                    FROM UserLikeTotal)
+                 ORDER BY COUNT(*) DESC
+                 LIMIT 10);

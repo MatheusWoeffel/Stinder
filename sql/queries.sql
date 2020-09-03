@@ -105,9 +105,15 @@ ORDER BY B.userid
 
 
 --Todos os usuários que não tem nenhum gênero em comum
-SELECT id, name FROM appuser as EXT where NOT EXISTS(
-	SELECT * FROM usergame JOIN gamegenre ON  (usergame.game = gamegenre.game) where userid=EXT.id and 
-  genre in (SELECT genre from usergame JOIN gamegenre ON (usergame.game = gamegenre.game) where userid=4)
+SELECT id, name 
+FROM appuser as EXT 
+where NOT EXISTS(
+  SELECT * FROM usergame 
+  JOIN gamegenre ON  (usergame.game = gamegenre.game) 
+  where userid=EXT.id and genre in (SELECT DISTINCT genre
+                                  from usergame 
+                                  JOIN gamegenre ON (usergame.game = gamegenre.game) 
+                                  where userid=4)
 ) and id != 4 --Necessário para o caso do usuário em questão não possuir jogos.(Vai dar "unmatch" em todos exceto nele mesmo);
 
 
@@ -198,7 +204,7 @@ WHERE userId IN (SELECT userTo FROM Classification
                  HAVING COUNT(*) > (SELECT AVG(total_positives)
                                     FROM UserLikeTotal)
                  ORDER BY COUNT(*) DESC
-                 LIMIT 10)
+                 LIMIT 10);
 
 -- SUGESTAO: Detalhes dos jogos de um usuário
 SELECT UG.userid, UG.lastPlayedDate, UG.hoursPlayed, UG.game,
