@@ -217,7 +217,6 @@ WHERE UA.userid = 1 AND A.game IN (SELECT game FROM UserGame
                                           WHERE userid = 1)
 ORDER BY UA.achievement, UA.createdAt DESC 
 
-
 -- outra implementacao para consulta de % de acheivements por jogo de um usuario
 -- porcentagem de achievement de um usuario dos jgos q possui mostrando o nome do jogo
 SELECT Game.name,
