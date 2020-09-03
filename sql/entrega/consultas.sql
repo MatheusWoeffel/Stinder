@@ -63,13 +63,13 @@ SELECT id FROM AppUser
 EXCEPT
 SELECT DISTINCT userId 
 FROM UserGame 
-WHERE Game IN (SELECT Game FROM UserGame WHERE userId = 3);
+WHERE game IN (SELECT game FROM UserGame WHERE userId = 3);
 
 SELECT id, name 
 FROM AppUser AS EXT 
-WHERE NOT EXISTS(SELECT Game
+WHERE NOT EXISTS(SELECT game
                 FROM UserGame 
-                WHERE userId = EXT.id AND Game IN (SELECT Game 
+                WHERE userId = EXT.id AND game IN (SELECT game 
                                                   FROM UserGame
                                                   WHERE userId = 1)
                 );
