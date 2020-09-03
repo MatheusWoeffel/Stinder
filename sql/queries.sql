@@ -216,3 +216,18 @@ INNER JOIN Achievement A ON UA.achievement = A.id
 WHERE UA.userid = 1 AND A.game IN (SELECT game FROM UserGame
                                           WHERE userid = 1)
 ORDER BY UA.achievement, UA.createdAt DESC 
+
+
+-- outra implementacao para consulta de % de acheivements por jogo de um usuario
+-- porcentagem de achievement de um usuario dos jgos q possui mostrando o nome do jogo
+SELECT Game.name,
+			 COUNT(DISTINCT UserAchievement.achievement) as achieved,
+			 COUNT(DISTINCT Achievement.id) as total,
+       CAST(COUNT(DISTINCT UserAchievement.achievement) AS float)/COUNT(DISTINCT Achievement.id) * 100.0 as percentage
+FROM UserAchievement
+RIGHT JOIN Achievement ON Achievement.id = UserAchievement.achievement
+INNER JOIN Game ON Game.id = Achievement.game
+WHERE (UserAchievement.userId = 2 OR UserAchievement.userId IS NULL)
+			AND Game.id IN (SELECT DISTINCT UserGame.game FROM UserGame
+                     WHERE UserGame.userid = 2)
+GROUP BY Game.name
