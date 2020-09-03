@@ -104,14 +104,11 @@ AND GameGenre.genre IN (SELECT DISTINCT GameGenre.genre
 ORDER BY B.userid
 
 
---Todos os usuários que não tem nenhum jogo em comum
-SELECT id FROM AppUser
-EXCEPT
-SELECT DISTINCT userId FROM UserGame WHERE Game in (SELECT game from usergame where userid=3);
-
-SELECT id, name from appuser as EXT where NOT EXISTS(
-	SELECT game from usergame where userid=EXT.id and game in(SELECT game from usergame where userid=1)
-);
+--Todos os usuários que não tem nenhum gênero em comum
+SELECT id, name FROM appuser as EXT where NOT EXISTS(
+	SELECT * FROM usergame JOIN gamegenre ON  (usergame.game = gamegenre.game) where userid=EXT.id and 
+  genre in (SELECT genre from usergame JOIN gamegenre ON (usergame.game = gamegenre.game) where userid=4)
+) and id != 4 --Necessário para o caso do usuário em questão não possuir jogos.(Vai dar "unmatch" em todos exceto nele mesmo);
 
 
 --Seleciona os 10 usuários com mais likes/superlikes e suas informações mais importantes
