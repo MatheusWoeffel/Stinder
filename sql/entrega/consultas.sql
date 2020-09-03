@@ -7,8 +7,10 @@
 DROP VIEW BasicUserDetail;
 
 CREATE VIEW BasicUserDetail AS 
-  SELECT U.id userId, U.name, U.birthdate, U.description, U.gender, P.id photoId, P.url
+  SELECT U.id userId, U.name, U.birthdate, U.description, U.gender, P.id photoId, P.url,
+  			 (GoldUser.expiresAt IS NOT NULL AND GoldUser.expiresAt >= CURRENT_DATE) AS isGoldUser
   FROM AppUser U
+  LEFT JOIN GoldUser ON GoldUser.userid = U.id
   LEFT JOIN Photo P ON P.userid = U.id
   WHERE P.id IS NULL OR P.id = (
     SELECT Photo.id FROM Photo
