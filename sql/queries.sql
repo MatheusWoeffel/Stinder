@@ -105,9 +105,9 @@ ORDER BY B.userid
 
 
 --Todos os usuários que não tem nenhum jogo em comum
-SELECT id FROM appuser
+SELECT id FROM AppUser
 EXCEPT
-SELECT DISTINCT userid from usergame where game in (SELECT game from usergame where userid=3);
+SELECT DISTINCT userId FROM UserGame WHERE Game in (SELECT game from usergame where userid=3);
 
 SELECT id, name from appuser as EXT where NOT EXISTS(
 	SELECT game from usergame where userid=EXT.id and game in(SELECT game from usergame where userid=1)
