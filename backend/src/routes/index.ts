@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { query } from '../db'
 
 const routes = Router();
 
@@ -18,6 +19,33 @@ routes.get('/hello', (request, response) => {
   };
   console.log('> GET /hello');
   return response.json(hello);
+});
+
+routes.get('/mostPlayedGender/:username', async (request, response)=> {
+
+  const mostPlayerGenderQuery = `SELECT Genre.name, SUM(UserGame.hoursPlayed)
+  FROM UserGame
+  INNER JOIN AppUser ON AppUser.id = UserGame.userId
+  INNER JOIN Game ON Game.id = UserGame.game
+  INNER JOIN GameGenre ON GameGenre.game = Game.id
+  INNER JOIN Genre ON Genre.id = GameGenre.genre
+  WHERE appuser.name=$1 --User name here
+  GROUP BY Genre.name
+  HAVING SUM(UserGame.hoursPlayed) >= 1000
+  ORDER BY SUM(UserGame.hoursPlayed) DESC`
+  
+  try{
+    const result = await query(mostPlayerGenderQuery,[request.params.username])
+    console.log(result);
+    return response.json(result.rows);
+  }
+
+  catch(err){
+    console.log(err);
+    response.status(400);
+    return response.json({error: err.message});
+  }
+ 
 });
 
 export default routes;
