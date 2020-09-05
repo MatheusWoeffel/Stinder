@@ -130,7 +130,8 @@ SELECT CAST(COUNT(UserAchievement.achievement) AS float)
 FROM UserAchievement 
 JOIN Achievement ON Achievement.id = UserAchievement.achievement 
 JOIN Game ON Game.id = Achievement.game 
-WHERE Game.name = 'Stardew Valley' AND userId = 2
+JOIN AppUser ON UserAchievement.userId = AppUser.id
+WHERE Game.name = 'Stardew Valley' AND AppUser.name = 'Matheus Woeffel'
 GROUP BY Game.name;
 
 -- Generos que o usuario mais joga. Totalizar as horas jogadas por genero e filtar (HAVING) 
