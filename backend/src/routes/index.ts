@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, response } from 'express';
 import { query } from '../db'
 
 const routes = Router();
@@ -46,6 +46,39 @@ routes.get('/mostPlayedGender/:username', async (request, response)=> {
     return response.json({error: err.message});
   }
  
+});
+
+
+routes.get("/suggestedUsersByGender/:username", async (request,response) => {
+  const suggestedUsersByGenderQuery = `SELECT DISTINCT B.userid, B.name, B.birthdate, B.description, B.gender, B.photoId, B.url
+  FROM BasicUserDetail B
+  INNER JOIN UserGame ON UserGame.userid = B.userid
+  INNER JOIN Game ON Game.id = UserGame.game
+  INNER JOIN GameGenre ON GameGenre.game = Game.id
+  WHERE B.name != $1
+  AND B.userid NOT IN (SELECT DISTINCT Classification.userTo id
+                         FROM Classification 
+                         INNER JOIN AppUser ON Classification.userFrom = AppUser.id
+                         WHERE AppUser.name = $1
+                        )
+  AND GameGenre.genre IN (SELECT DISTINCT GameGenre.genre
+                          FROM UserGame
+                          INNER JOIN Game ON Game.id = UserGame.game
+                          INNER JOIN GameGenre ON GameGenre.game = Game.id
+                          INNER JOIN AppUser ON  UserGame.userid = AppUser.id
+                          WHERE AppUser.name = $1
+                         )
+  ORDER BY B.userid;`;
+
+  try{
+    let result = await query(suggestedUsersByGenderQuery,[request.params.username]);
+    return response.json(result.rows);
+  }
+  catch(err){
+    console.log(err);
+    response.status(400);
+    return response.json({error: err.message});
+  }
 });
 
 export default routes;
