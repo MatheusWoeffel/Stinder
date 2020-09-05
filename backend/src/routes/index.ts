@@ -1,4 +1,4 @@
-import { Router, response } from 'express';
+import { Router, response, request } from 'express';
 import { query } from '../db'
 
 const routes = Router();
@@ -97,6 +97,82 @@ routes.get("/sharedAchievementsByUsers/:username1&:username2", async (request,re
   try{
     let result = await query(sharedAchievementsByUsersQuery,[request.params.username1, request.params.username2]);
     return response.json(result.rows);
+  }
+  catch(err){
+    console.log(err);
+    response.status(400);
+    return response.json({error: err.message});
+  }
+});
+
+routes.get("/getMessagesOfUserBySubstring/:username&:substring", async (request,response) => {
+  const messagesOfUserBySubstringQuery = `SELECT  BasicUserDetail.userId AS userId, BasicUserDetail.name AS senderName, Match.id AS matchId, Message.text AS messageText
+  FROM Message 
+  JOIN BasicUserDetail ON BasicUserDetail.userid = Message.sender
+  JOIN Match ON Match.id = Message.match
+  WHERE BasicUserDetail.name = $1 AND (Message.text ILIKE '%${request.params.substring}%');`;
+
+  try{
+    let result = await query(messagesOfUserBySubstringQuery,[request.params.username]);
+    return response.json(result.rows);
+  }
+  catch(err){
+    console.log(err);
+    response.status(400);
+    return response.json({error: err.message});
+  }
+});
+
+routes.get("/getTopUsers", async (request,response) => {
+  const getTopUsersQuery = `DROP VIEW IF EXISTS UserLikeTotal;
+
+  CREATE VIEW UserLikeTotal AS 
+    SELECT userTo as userId,
+           COUNT(*) FILTER (WHERE type != 'd') total_positives,
+           COUNT(*) total_classifications
+    FROM Classification
+    GROUP BY userTo;
+  
+  
+  SELECT * FROM BasicUserDetail
+  WHERE userId IN (SELECT userTo FROM Classification
+                   WHERE type != 'd'
+                   GROUP BY userTo
+                   HAVING COUNT(*) > (SELECT AVG(total_positives)
+                                      FROM UserLikeTotal)
+                   ORDER BY COUNT(*) DESC
+                   LIMIT 10);`;
+
+  try{
+    let result = await query(getTopUsersQuery,[]);
+    return response.json(result[2].rows); //Various comands yields a vector of results, hence we pick up only the last one
+  }
+  catch(err){
+    console.log(err);
+    response.status(400);
+    return response.json({error: err.message});
+  }
+});
+
+routes.get("/getAchievementCompletion/:username&:game", async (request, response) =>{
+    const getAchievementCompletionQuery = `SELECT CAST(COUNT(UserAchievement.achievement) AS float)
+    /
+    CAST((SELECT COUNT(Achievement.id) AS num_achievements 
+          FROM Achievement
+          JOIN Game ON Game.id = Achievement.game 
+          WHERE Game.name = 'Stardew Valley' 
+          GROUP BY Game.name)
+        AS float) * 100 AS achievement_percentage 
+FROM UserAchievement 
+JOIN Achievement ON Achievement.id = UserAchievement.achievement 
+JOIN Game ON Game.id = Achievement.game 
+JOIN AppUser ON UserAchievement.userId = AppUser.id
+WHERE Game.name = $2 AND AppUser.name = $1
+GROUP BY Game.name;`
+
+  try{
+    let result = await query(getAchievementCompletionQuery,[request.params.username, request.params.game]);
+    return response.json(result.rows); //Various comands yields a vector of results, hence we pick up only the last one
   }
   catch(err){
     console.log(err);

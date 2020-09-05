@@ -176,14 +176,14 @@ ORDER BY UG.lastPlayedDate;
 -- Os 10 usuarios com a quantidade de likes superior a media de likes por usuario
 -- Tem como alterar a consulta para contabilizar apenas os likes realizados nos ultimos 7 dias, por exemplo.
 --Matheus
-DROP VIEW UserLikeTotal;
+DROP VIEW IF EXISTS UserLikeTotal;
 
 CREATE VIEW UserLikeTotal AS 
   SELECT userTo as userId,
   			 COUNT(*) FILTER (WHERE type != 'd') total_positives,
          COUNT(*) total_classifications
   FROM Classification
-  GROUP BY userTo
+  GROUP BY userTo;
 
 
 SELECT * FROM BasicUserDetail
