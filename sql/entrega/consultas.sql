@@ -30,6 +30,7 @@ CREATE VIEW BasicUserDetail AS
 -- Sobre o usuário que buscou, é retornado o nome e a foto principal.
 
 -- TODO: Alterar para buscar por nome de usuario???
+--Alencar
 SELECT M.id, M.match, M.text, M.createdAt, B.userId, B.name, B.photoId, B.url
 FROM Message M
 INNER JOIN BasicUserDetail B ON B.userId = M.sender
@@ -41,26 +42,33 @@ ORDER BY Match.id, M.createdAt DESC;
 -- Essa consulta retorna os dados dos usuários que não ainda não foram classificados pelo usuário logado E que
 -- possuam algum gênero de jogo em comum.
 -- O intuito dessa consulta seria trazer os IDs de usuários que podem ser mostrados durante a classificação
+--Matheus
 SELECT DISTINCT B.userid, B.name, B.birthdate, B.description, B.gender, B.photoId, B.url
 FROM BasicUserDetail B
 INNER JOIN UserGame ON UserGame.userid = B.userid
 INNER JOIN Game ON Game.id = UserGame.game
 INNER JOIN GameGenre ON GameGenre.game = Game.id
-WHERE B.userid != 1 
+WHERE B.name != 'Matheus Woeffel'
 AND B.userid NOT IN (SELECT DISTINCT Classification.userTo id
                        FROM Classification 
-                       WHERE Classification.userFrom = 1
+                       INNER JOIN AppUser ON Classification.userFrom = AppUser.id
+                       WHERE AppUser.name = 'Matheus Woeffel'
                       )
 AND GameGenre.genre IN (SELECT DISTINCT GameGenre.genre
                         FROM UserGame
                         INNER JOIN Game ON Game.id = UserGame.game
                         INNER JOIN GameGenre ON GameGenre.game = Game.id
-                        WHERE UserGame.userid = 1
+                        INNER JOIN AppUser ON  UserGame.userid = AppUser.id
+                        WHERE AppUser.name = 'Matheus Woeffel'
                        )
 ORDER BY B.userid;
 
 
+
+
+
 --Todos os usuários que não tem nenhum gênero em comum
+--Alencar
 SELECT id, name 
 FROM AppUser AS EXT 
 WHERE id != 4 AND NOT EXISTS(
@@ -75,6 +83,7 @@ WHERE id != 4 AND NOT EXISTS(
 
 
 --Todos os achievements em comum entre dois usuários. 
+--Matheus
 SELECT AppUser.name, Achievement.name, Game.name as gamename, Achievement.thumbnail, Achievement.description 
 FROM UserAchievement
 JOIN Achievement ON Achievement.id = UserAchievement.achievement
@@ -92,6 +101,7 @@ AND Achievement.id IN (SELECT Achievement
 -- Atividades dos match de um determinado user.
 -- Utilizado na tela de Feed para visualizar as atividade que foram realizadas pelos matches do usuário logado
 -- TODO: Talvez colocar para filtrar por nome ao inves de id?
+--Alencar
 SELECT U.id activity, A.type, A.createdAt, A.userid userId, U.name, G.id gameId, G.name gamename, G.thumbnail gameThumb, P.id photoId, P.url photoUrl
 FROM Activity A
 INNER JOIN AppUser U ON U.id = A.userid
@@ -108,6 +118,7 @@ ORDER BY A.createdAt DESC;
 
 -- Porcentagem de achievements completados por usuário para algum jogo
 -- TODO: pegar de todos os jogos?
+--Matheus
 SELECT CAST(COUNT(UserAchievement.achievement) AS float)
         /
         CAST((SELECT COUNT(Achievement.id) AS num_achievements 
@@ -119,12 +130,14 @@ SELECT CAST(COUNT(UserAchievement.achievement) AS float)
 FROM UserAchievement 
 JOIN Achievement ON Achievement.id = UserAchievement.achievement 
 JOIN Game ON Game.id = Achievement.game 
-WHERE Game.name = 'Stardew Valley' AND userId = 2
+JOIN AppUser ON UserAchievement.userId = AppUser.id
+WHERE Game.name = 'Stardew Valley' AND AppUser.name = 'Matheus Woeffel'
 GROUP BY Game.name;
 
 -- Generos que o usuario mais joga. Totalizar as horas jogadas por genero e filtar (HAVING) 
 -- por generos que totalizar mais do que um certo numero de horas, por exemplo 1000,
 -- para classificarmos como Experts!
+--Alencar
 SELECT Genre.name, SUM(UserGame.hoursPlayed)
 FROM UserGame
 INNER JOIN AppUser ON AppUser.id = UserGame.userId
@@ -138,6 +151,7 @@ ORDER BY SUM(UserGame.hoursPlayed) DESC;
 
 
 -- Mensagens de um dado usuário que contem uma dada palavra
+--Matheus
 SELECT  BasicUserDetail.userId AS userId, BasicUserDetail.name AS senderName, Match.id AS matchId, Message.text AS messageText
 FROM Message 
 JOIN BasicUserDetail ON BasicUserDetail.userid = Message.sender
@@ -147,6 +161,7 @@ WHERE BasicUserDetail.name = 'Alencar da Costa' AND (Message.text ILIKE '%Oi%');
 
 -- TODO:Verificar se essa vai entrar e se a pesquisa vai ser por id de usuario ou nome
 -- Buscar detalhes completos dos jogos de um usuário
+--ALencar
 SELECT UG.userid, UG.lastPlayedDate, UG.hoursPlayed, UG.game,
 G.name gameName, G.thumbnail gameThumb, G.releaseDate, G.developer, 
 D.name developerName, D.thumbnail developerThumb
@@ -160,14 +175,15 @@ ORDER BY UG.lastPlayedDate;
 -- SUGESTAO: Buscar o 10 usuarios mais "famosos" do momento
 -- Os 10 usuarios com a quantidade de likes superior a media de likes por usuario
 -- Tem como alterar a consulta para contabilizar apenas os likes realizados nos ultimos 7 dias, por exemplo.
-DROP VIEW UserLikeTotal;
+--Matheus
+DROP VIEW IF EXISTS UserLikeTotal;
 
 CREATE VIEW UserLikeTotal AS 
   SELECT userTo as userId,
   			 COUNT(*) FILTER (WHERE type != 'd') total_positives,
          COUNT(*) total_classifications
   FROM Classification
-  GROUP BY userTo
+  GROUP BY userTo;
 
 
 SELECT * FROM BasicUserDetail

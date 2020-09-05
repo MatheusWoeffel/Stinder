@@ -12,24 +12,75 @@
 
   <h1>Hello, Stinder</h1>
 
-  <h4 id="backend-response"></h4>
+  <h2>Consultas</h2>
+
+  <section id="query1" class="query">
+    <h1>Gêneros que o usuário mais joga, sendo expert (horas jogadas > 1000)</h1>
+    <label for="userInput1">Nome do usuário</label> <input id="userInput1" name="userInput1" type="text">
+    <button>Submit</button>
+
+    <table class="query1Result"></table>
+  </section>
+
+  <section id="query2" class="query">
+    <h1>Usuários sugeridos para um dado usuário que tenham gêneros em comum.</h1>
+    <label for="userInput2">Nome do usuário</label> <input id="userInput2" name="userInput2" type="text">
+    <button>Submit</button>
+
+    <table class="query2Result"></table>
+  </section>
+
+  <section id="query3" class="query">
+    <h1>Achievements em comum entre dois usuários.</h1>
+    <label for="firstUserInput3">Nome do usuário 1</label> <input id="firstUserInput3" name="userInput3" type="text">
+    <label for="secondUserInput3">Nome do usuário 2</label> <input id="secondUserInput3" name="userInput3" type="text">
+    <button>Submit</button>
+
+    <table class="query3Result"></table>
+  </section>
+
+  <section id="query4" class="query">
+    <h1>Buscar Mensagem de um usuário por substring</h1>
+    <label for="firstUserInput4">Nome do usuário 1</label> <input id="firstUserInput4" name="userInput4" type="text">
+    <label for="secondUserInput4">Message Substring</label> <input id="secondUserInput4" name="userInput4" type="text">
+    <button>Submit</button>
+
+    <table class="query4Result"></table>
+  </section>
+
+  <section id="query5" class="query">
+    <h1>Top Usuários do Momento</h1>
+    <button>Submit</button>
+
+    <table class="query5Result"></table>
+  </section>
+
+  <section id="query6" class="query">
+    <h1>Buscar porcentagem de completamento de achievements de um dado jogo</h1>
+    <label for="firstUserInput6">Nome do usuário</label> <input id="firstUserInput6" name="userInput6" type="text">
+    <label for="secondUserInput6">Nome do Jogo</label> <input id="secondUserInput6" name="userInput6" type="text">
+    <button>Submit</button>
+
+    <table class="query6Result"></table>
+  </section>
 
   <script>
-    const API_PATH = 'http://localhost:3232'; 
-    const element = document.getElementById('backend-response');
-    fetch(`${API_PATH}/hello`)
-      .then(response => {
-        console.log('Resposta', response);
-        response.json()
-          .then(data => {
-            element.innerHTML = JSON.stringify(data, null, ' ');
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => { 
-        console.error('Deu erro!', err)
-        element.innerHTML = 'Erro na requisição';
-      });
+    // const API_PATH = 'http://localhost:3232'; 
+    // const element = document.getElementById('backend-response');
+    // fetch(`${API_PATH}/hello`)
+    //   .then(response => {
+    //     console.log('Resposta', response);
+    //     response.json()
+    //       .then(data => {
+    //         element.innerHTML = JSON.stringify(data, null, ' ');
+    //       })
+    //       .catch(err => console.log(err));
+    //   })
+    //   .catch(err => { 
+    //     console.error('Deu erro!', err)
+    //     element.innerHTML = 'Erro na requisição';
+    //   });
   </script>
+  <script src="fetchQueries.js"></script>
 </body>
 </html>
