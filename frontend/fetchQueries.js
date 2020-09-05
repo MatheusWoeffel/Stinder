@@ -25,13 +25,28 @@ let firstInputUserQuery6 = document.querySelector("#firstUserInput6");
 let secondInputUserQuery6 = document.querySelector("#secondUserInput6");
 let query6Table = document.querySelector(".query6Result");
 
-let getSanitizedInputFrom = (inputElement) => {
+const activityFeed = document.querySelector('#activityFeed');
+ 
+const userMessages = document.querySelector('#userMessages');
+
+const noCommonGenres = document.querySelector('#noCommonGenresUsers');
+
+const userGames = document.querySelector('#userGames');
+
+const getSanitizedInputFrom = (inputElement) => {
     //TODO: Sanitize SQL statements
     //Question: It's better to sanitize at both ends or just at backend?
     return inputElement.value.trim();
 }
 
-let getListFromRequest  = async (path) =>{
+const getDataFromForm = (form) => {
+    if (form && form.nodeType === Node.ELEMENT_NODE && form.tagName === 'FORM') {
+        return Object.fromEntries(new FormData(form));
+    }
+    return {};
+} 
+
+const getListFromRequest  = async (path) =>{
     let query_path = API_PATH + path;
 
     try{
@@ -45,12 +60,33 @@ let getListFromRequest  = async (path) =>{
     }     
 }
 
-let populateTableFrom = (responseList, tableElement) =>{
-    responseList.forEach(element => {
-        let newRow = document.createElement("tr");
-        newRow.textContent = JSON.stringify(element);
-        tableElement.appendChild(newRow);
-    });
+function createTableRow(values, isHeader = false) {
+    console.log(values);
+    if (values && values.length) {
+        const row = document.createElement('tr');
+        const columnTag = isHeader ? 'th' : 'td';
+        
+        values.forEach(value => {
+            console.log(value);
+            const column = document.createElement(columnTag);
+            column.textContent = value;
+            row.append(column);
+        });
+        return row;
+    }
+    return undefined;
+}
+
+const populateTableFrom = (responseList, tableElement) =>{
+    if (responseList && responseList.length && tableElement && tableElement.nodeType === Node.ELEMENT_NODE) {
+        const headerNames = Object.keys(responseList[0]);
+        tableElement.append(createTableRow(headerNames, true));
+
+        responseList.forEach(row => {
+            const values = Object.values(row);
+            tableElement.append(createTableRow(values));
+        });
+    }
 } 
 
 buttonQuery1.addEventListener("click", async ()=>{
@@ -89,3 +125,42 @@ buttonQuery6.addEventListener("click", async ()=>{
     populateTableFrom(responseList,query6Table);
 });
 
+activityFeed.querySelector('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const table = activityFeed.querySelector('table');
+    table.innerHTML = '';
+
+    const data = getDataFromForm(activityFeed.querySelector('form'));
+    const response = await getListFromRequest(`/userActivityFeed/${data.userid}`);
+    populateTableFrom(response, table);
+});
+
+userMessages.querySelector('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const table = userMessages.querySelector('table');
+    table.innerHTML = '';
+
+    const data = getDataFromForm(userMessages.querySelector('form'));
+    const response = await getListFromRequest(`/userMessages/${data.userid}`);
+    populateTableFrom(response, table);
+});
+
+noCommonGenres.querySelector('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const table = noCommonGenres.querySelector('table');
+    table.innerHTML = '';
+
+    const data = getDataFromForm(noCommonGenres.querySelector('form'));
+    const response = await getListFromRequest(`/noCommonGenresUsers/${data.userid}`);
+    populateTableFrom(response, table);
+});
+
+userGames.querySelector('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const table = userGames.querySelector('table');
+    table.innerHTML = '';
+
+    const data = getDataFromForm(userGames.querySelector('form'));
+    const response = await getListFromRequest(`/userGames/${data.userid}`);
+    populateTableFrom(response, table);
+});

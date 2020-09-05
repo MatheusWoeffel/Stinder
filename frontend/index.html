@@ -64,6 +64,46 @@
     <table class="query6Result"></table>
   </section>
 
+  <section id="activityFeed" class="query">
+    <h1>Buscar feed de atividades dos matches de um usuário.</h1>
+    <form>
+      <label for="activityFeed-userid">Id do usuário</label> <input id="activityFeed-userid" name="userid" type="text">
+      <button type="submit">Submit</button>
+    </form>
+
+    <table id="activityFeed-table"></table>
+  </section>
+
+  <section id="userMessages" class="query">
+    <h1>Buscar mensagens dos matches de um usuário.</h1>
+    <form>
+      <label for="userMessages-userid">Id do usuário</label> <input id="userMessages-userid" name="userid" type="text">
+      <button type="submit">Submit</button>
+    </form>
+
+    <table id="userMessages-table"></table>
+  </section>
+
+  <section id="noCommonGenresUsers" class="query">
+    <h1>Buscar usuários que não possuem gêneros em comum com um usuário.</h1>
+    <form>
+      <label for="noCommonGenresUsers-userid">Id do usuário</label> <input id="noCommonGenresUsers-userid" name="userid" type="text">
+      <button type="submit">Submit</button>
+    </form>
+
+    <table id="noCommonGenresUsers-table"></table>
+  </section>
+
+  <section id="userGames" class="query">
+    <h1>Buscar detalhes dos games de um usuário.</h1>
+    <form>
+      <label for="userGames-userid">Id do usuário</label> <input id="userGames-userid" name="userid" type="text">
+      <button type="submit">Submit</button>
+    </form>
+
+    <table id="userGames-table"></table>
+  </section>
+
   <script src="fetchQueries.js"></script>
 </body>
 </html>
