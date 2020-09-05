@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import query from '../db';
 import getUsersBasicDetails from '../db/queries/getUsersBasicDetails';
+import getUserMessages from '../db/queries/getUserMessages';
+import getNoCommonGenresUsers from '../db/queries/getNoCommonGenresUsers';
 
 const routes = Router();
 
@@ -174,9 +176,29 @@ GROUP BY Game.name;`;
   }
 });
 
-routes.get('/getUsersBasicDetails', async (request, response) => {
+routes.get('/usersBasicDetails', async (request, response) => {
   try {
     const result = await getUsersBasicDetails();
+    return response.json(result);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
+});
+
+routes.get('/userMessages/:id', async (request, response) => {
+  try {
+    const { id } = request.params;
+    const result = await getUserMessages(Number(id));
+    return response.json(result);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
+});
+
+routes.get('/noCommonGenresUsers/:id', async (request, response) => {
+  try {
+    const { id } = request.params;
+    const result = await getNoCommonGenresUsers(Number(id));
     return response.json(result);
   } catch (error) {
     return response.status(400).json({ error: error.message });
