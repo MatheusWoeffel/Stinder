@@ -12,6 +12,12 @@ let firstInputUserQuery3 = document.querySelector("#firstUserInput3");
 let secondInputUserQuery3 = document.querySelector("#secondUserInput3");
 let query3Table = document.querySelector(".query3Result");
 
+let getSanitizedInputFrom = (inputElement) => {
+    //TODO: Sanitize SQL statements
+    //Question: It's better to sanitize at both ends or just at backend?
+    return inputElement.value.trim();
+}
+
 let getListFromRequest  = async (path) =>{
     let query_path = API_PATH + path;
 
@@ -36,18 +42,18 @@ let populateTableFrom = (responseList, tableElement) =>{
 
 buttonQuery1.addEventListener("click", async ()=>{
     query1Table.innerHTML = "";
-    let responseList = await getListFromRequest(`/mostPlayedGender/${inputUserQuery1.value}`);
+    let responseList = await getListFromRequest(`/mostPlayedGender/${getSanitizedInputFrom(inputUserQuery1)}`);
     populateTableFrom(responseList,query1Table);
 });
 
 buttonQuery2.addEventListener("click", async ()=>{
     query2Table.innerHTML = "";
-    let responseList = await getListFromRequest(`/suggestedUsersByGender/${inputUserQuery2.value}`);
+    let responseList = await getListFromRequest(`/suggestedUsersByGender/${getSanitizedInputFrom(inputUserQuery2)}`);
     populateTableFrom(responseList,query2Table);
 });
 
 buttonQuery3.addEventListener("click", async ()=>{
     query3Table.innerHTML = "";
-    let responseList = await getListFromRequest(`/sharedAchievementsByUsers/${firstInputUserQuery3.value}&${secondInputUserQuery3.value}`);
+    let responseList = await getListFromRequest(`/sharedAchievementsByUsers/${getSanitizedInputFrom(firstInputUserQuery3)}&${getSanitizedInputFrom(firstInputUserQuery3)}`);
     populateTableFrom(responseList,query3Table);
 });
