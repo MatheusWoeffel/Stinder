@@ -48,18 +48,23 @@ FROM BasicUserDetail B
 INNER JOIN UserGame ON UserGame.userid = B.userid
 INNER JOIN Game ON Game.id = UserGame.game
 INNER JOIN GameGenre ON GameGenre.game = Game.id
-WHERE B.userid != 1 
+WHERE B.name != 'Matheus Woeffel'
 AND B.userid NOT IN (SELECT DISTINCT Classification.userTo id
                        FROM Classification 
-                       WHERE Classification.userFrom = 1
+                       INNER JOIN AppUser ON Classification.userFrom = AppUser.id
+                       WHERE AppUser.name = 'Matheus Woeffel'
                       )
 AND GameGenre.genre IN (SELECT DISTINCT GameGenre.genre
                         FROM UserGame
                         INNER JOIN Game ON Game.id = UserGame.game
                         INNER JOIN GameGenre ON GameGenre.game = Game.id
-                        WHERE UserGame.userid = 1
+                        INNER JOIN AppUser ON  UserGame.userid = AppUser.id
+                        WHERE AppUser.name = 'Matheus Woeffel'
                        )
 ORDER BY B.userid;
+
+
+
 
 
 --Todos os usuários que não tem nenhum gênero em comum
