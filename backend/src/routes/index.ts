@@ -81,4 +81,28 @@ routes.get("/suggestedUsersByGender/:username", async (request,response) => {
   }
 });
 
+routes.get("/sharedAchievementsByUsers/:username1&:username2", async (request,response) => {
+  const sharedAchievementsByUsersQuery = `SELECT AppUser.name, Achievement.name, Game.name as gamename, Achievement.thumbnail, Achievement.description 
+  FROM UserAchievement
+  JOIN Achievement ON Achievement.id = UserAchievement.achievement
+  JOIN Game ON Game.id = Achievement.game
+  JOIN AppUser ON AppUser.id = UserAchievement.userId
+  WHERE AppUser.name = $1 --First user name
+  AND Achievement.id IN (SELECT Achievement 
+                        FROM UserAchievement 
+                        JOIN AppUser ON AppUser.id = UserAchievement.userId
+                        WHERE AppUser.name = $2 --Second user name
+                        );`;
+
+  try{
+    let result = await query(sharedAchievementsByUsersQuery,[request.params.username1, request.params.username2]);
+    return response.json(result.rows);
+  }
+  catch(err){
+    console.log(err);
+    response.status(400);
+    return response.json({error: err.message});
+  }
+});
+
 export default routes;

@@ -7,6 +7,11 @@ let buttonQuery2 = document.querySelector("#query2 button");
 let inputUserQuery2 = document.querySelector("#userInput2");
 let query2Table = document.querySelector(".query2Result");
 
+let buttonQuery3 = document.querySelector("#query3 button");
+let firstInputUserQuery3 = document.querySelector("#firstUserInput3");
+let secondInputUserQuery3 = document.querySelector("#secondUserInput3");
+let query3Table = document.querySelector(".query3Result");
+
 let getListFromRequest  = async (path) =>{
     let query_path = API_PATH + path;
 
@@ -39,4 +44,10 @@ buttonQuery2.addEventListener("click", async ()=>{
     query2Table.innerHTML = "";
     let responseList = await getListFromRequest(`/suggestedUsersByGender/${inputUserQuery2.value}`);
     populateTableFrom(responseList,query2Table);
+});
+
+buttonQuery3.addEventListener("click", async ()=>{
+    query3Table.innerHTML = "";
+    let responseList = await getListFromRequest(`/sharedAchievementsByUsers/${firstInputUserQuery3.value}&${secondInputUserQuery3.value}`);
+    populateTableFrom(responseList,query3Table);
 });
