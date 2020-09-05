@@ -4,6 +4,7 @@ import getUsersBasicDetails from '../db/queries/getUsersBasicDetails';
 import getUserMessages from '../db/queries/getUserMessages';
 import getNoCommonGenresUsers from '../db/queries/getNoCommonGenresUsers';
 import getUserActivityFeed from '../db/queries/getUserActivityFeed';
+import getUserGames from '../db/queries/getUserGames';
 
 const routes = Router();
 
@@ -216,6 +217,16 @@ routes.get('/userActivityFeed/:id', async (request, response) => {
   try {
     const { id } = request.params;
     const result = await getUserActivityFeed(Number(id));
+    return response.json(result);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
+});
+
+routes.get('/userGames/:id', async (request, response) => {
+  try {
+    const { id } = request.params;
+    const result = await getUserGames(Number(id));
     return response.json(result);
   } catch (error) {
     return response.status(400).json({ error: error.message });
