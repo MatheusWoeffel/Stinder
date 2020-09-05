@@ -102,7 +102,7 @@ AND Achievement.id IN (SELECT Achievement
 -- Utilizado na tela de Feed para visualizar as atividade que foram realizadas pelos matches do usuário logado
 -- TODO: Talvez colocar para filtrar por nome ao inves de id?
 --Alencar
-SELECT U.id activity, A.type, A.createdAt, A.userid userId, U.name, G.id gameId, G.name gamename, G.thumbnail gameThumb, P.id photoId, P.url photoUrl
+SELECT A.id activity, A.type, A.createdAt, A.userid userId, U.name, G.id gameId, G.name gamename, G.thumbnail gameThumb, P.id photoId, P.url photoUrl
 FROM Activity A
 INNER JOIN AppUser U ON U.id = A.userid
 LEFT JOIN Game G ON G.id = A.game

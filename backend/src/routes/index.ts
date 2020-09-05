@@ -3,6 +3,7 @@ import query from '../db';
 import getUsersBasicDetails from '../db/queries/getUsersBasicDetails';
 import getUserMessages from '../db/queries/getUserMessages';
 import getNoCommonGenresUsers from '../db/queries/getNoCommonGenresUsers';
+import getUserActivityFeed from '../db/queries/getUserActivityFeed';
 
 const routes = Router();
 
@@ -92,7 +93,10 @@ routes.get('/sharedAchievementsByUsers/:username1&:username2', async (request, r
                         );`;
 
   try {
-    const result = await query(sharedAchievementsByUsersQuery, [request.params.username1, request.params.username2]);
+    const result = await query(
+      sharedAchievementsByUsersQuery,
+      [request.params.username1, request.params.username2],
+    );
     return response.json(result.rows);
   } catch (err) {
     console.log(err);
@@ -166,7 +170,10 @@ WHERE Game.name = $2 AND AppUser.name = $1
 GROUP BY Game.name;`;
 
   try {
-    const result = await query(getAchievementCompletionQuery, [request.params.username, request.params.game]);
+    const result = await query(
+      getAchievementCompletionQuery,
+      [request.params.username, request.params.game],
+    );
     // Various comands yields a vector of results, hence we pick up only the last one
     return response.json(result.rows);
   } catch (err) {
@@ -199,6 +206,16 @@ routes.get('/noCommonGenresUsers/:id', async (request, response) => {
   try {
     const { id } = request.params;
     const result = await getNoCommonGenresUsers(Number(id));
+    return response.json(result);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
+});
+
+routes.get('/userActivityFeed/:id', async (request, response) => {
+  try {
+    const { id } = request.params;
+    const result = await getUserActivityFeed(Number(id));
     return response.json(result);
   } catch (error) {
     return response.status(400).json({ error: error.message });
