@@ -161,6 +161,7 @@ userGames.querySelector('form').addEventListener('submit', async (e) => {
     table.innerHTML = '';
 
     const data = getDataFromForm(userGames.querySelector('form'));
+
     const response = await getListFromRequest(`/userGames/${data.userid}`);
     populateTableFrom(response, table);
 });

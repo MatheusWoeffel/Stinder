@@ -4,106 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | Stinder</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="autocompleteStyles.css">
 </head>
 <body>
   <main>
-    
+
+    <h1>Hello, Stinder</h1>
+
+    <h2>Consultas</h2>
+
+    <section id="query1" class="query">
+      <h1>Gêneros que o usuário mais joga, sendo expert (horas jogadas > 1000)</h1>
+      <label for="userInput1">Nome do usuário</label> <input id="userInput1" name="userInput1" type="text">
+      <button>Submit</button>
+
+      <table class="query1Result"></table>
+    </section>
+
+    <section id="query2" class="query">
+      <h1>Usuários sugeridos para um dado usuário que tenham gêneros em comum.</h1>
+      <label for="userInput2">Nome do usuário</label> <input id="userInput2" name="userInput2" type="text">
+      <button>Submit</button>
+
+      <table class="query2Result"></table>
+    </section>
+
+    <section id="query3" class="query">
+      <h1>Achievements em comum entre dois usuários.</h1>
+      <label for="firstUserInput3">Nome do usuário 1</label> <input id="firstUserInput3" name="userInput3" type="text">
+      <label for="secondUserInput3">Nome do usuário 2</label> <input id="secondUserInput3" name="userInput3" type="text">
+      <button>Submit</button>
+
+      <table class="query3Result"></table>
+    </section>
+
+    <section id="query4" class="query">
+      <h1>Buscar Mensagem de um usuário por substring</h1>
+      <label for="firstUserInput4">Nome do usuário</label> <input id="firstUserInput4" name="userInput4" type="text">
+      <label for="secondUserInput4">Message Substring</label> <input id="secondUserInput4" name="userInput4" type="text">
+      <button>Submit</button>
+
+      <table class="query4Result"></table>
+    </section>
+
+    <section id="query5" class="query">
+      <h1>Top Usuários do Momento</h1>
+      <button>Submit</button>
+
+      <table class="query5Result"></table>
+    </section>
+
+    <section id="query6" class="query">
+      <h1>Buscar porcentagem de completamento de achievements de um dado jogo</h1>
+      <label for="firstUserInput6">Nome do usuário</label> <input id="firstUserInput6" name="userInput6" type="text">
+      <label for="secondUserInput6">Nome do Jogo</label> <input id="secondUserInput6" name="userInput6" type="text">
+      <button>Submit</button>
+
+      <table class="query6Result"></table>
+    </section>
+
+    <section id="activityFeed" class="query">
+      <h1>Buscar feed de atividades dos matches de um usuário.</h1>
+      <form>
+        <label for="activityFeed-userid">Id do usuário</label> <input id="activityFeed-userid" name="userid" type="text">
+        <button type="submit">Submit</button>
+      </form>
+
+      <table id="activityFeed-table"></table>
+    </section>
+
+    <section id="userMessages" class="query">
+      <h1>Buscar mensagens dos matches de um usuário.</h1>
+      <form>
+        <label for="userMessages-userid">Id do usuário</label> <input id="userMessages-userid" name="userid" type="text">
+        <button type="submit">Submit</button>
+      </form>
+
+      <table id="userMessages-table"></table>
+    </section>
+
+    <section id="noCommonGenresUsers" class="query">
+      <h1>Buscar usuários que não possuem gêneros em comum com um usuário.</h1>
+      <form>
+        <label for="noCommonGenresUsers-userid">Id do usuário</label> <input id="noCommonGenresUsers-userid" name="userid" type="text">
+        <button type="submit">Submit</button>
+      </form>
+
+      <table id="noCommonGenresUsers-table"></table>
+    </section>
+
+    <section id="userGames" class="query">
+      <h1>Buscar detalhes dos games de um usuário.</h1>
+      <form>
+        <label class="autocomplete-wrapper" for="userGames-userid">Id do usuário</label>
+        <div class="autocomplete-wrapper">
+          <input id="userGames-userid" class="autocomplete" autocomplete="off" name="userid" type="text">
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+
+      <table id="userGames-table"></table>
+    </section>
   </main>
-
-  <h1>Hello, Stinder</h1>
-
-  <h2>Consultas</h2>
-
-  <section id="query1" class="query">
-    <h1>Gêneros que o usuário mais joga, sendo expert (horas jogadas > 1000)</h1>
-    <label for="userInput1">Nome do usuário</label> <input id="userInput1" name="userInput1" type="text">
-    <button>Submit</button>
-
-    <table class="query1Result"></table>
-  </section>
-
-  <section id="query2" class="query">
-    <h1>Usuários sugeridos para um dado usuário que tenham gêneros em comum.</h1>
-    <label for="userInput2">Nome do usuário</label> <input id="userInput2" name="userInput2" type="text">
-    <button>Submit</button>
-
-    <table class="query2Result"></table>
-  </section>
-
-  <section id="query3" class="query">
-    <h1>Achievements em comum entre dois usuários.</h1>
-    <label for="firstUserInput3">Nome do usuário 1</label> <input id="firstUserInput3" name="userInput3" type="text">
-    <label for="secondUserInput3">Nome do usuário 2</label> <input id="secondUserInput3" name="userInput3" type="text">
-    <button>Submit</button>
-
-    <table class="query3Result"></table>
-  </section>
-
-  <section id="query4" class="query">
-    <h1>Buscar Mensagem de um usuário por substring</h1>
-    <label for="firstUserInput4">Nome do usuário</label> <input id="firstUserInput4" name="userInput4" type="text">
-    <label for="secondUserInput4">Message Substring</label> <input id="secondUserInput4" name="userInput4" type="text">
-    <button>Submit</button>
-
-    <table class="query4Result"></table>
-  </section>
-
-  <section id="query5" class="query">
-    <h1>Top Usuários do Momento</h1>
-    <button>Submit</button>
-
-    <table class="query5Result"></table>
-  </section>
-
-  <section id="query6" class="query">
-    <h1>Buscar porcentagem de completamento de achievements de um dado jogo</h1>
-    <label for="firstUserInput6">Nome do usuário</label> <input id="firstUserInput6" name="userInput6" type="text">
-    <label for="secondUserInput6">Nome do Jogo</label> <input id="secondUserInput6" name="userInput6" type="text">
-    <button>Submit</button>
-
-    <table class="query6Result"></table>
-  </section>
-
-  <section id="activityFeed" class="query">
-    <h1>Buscar feed de atividades dos matches de um usuário.</h1>
-    <form>
-      <label for="activityFeed-userid">Id do usuário</label> <input id="activityFeed-userid" name="userid" type="text">
-      <button type="submit">Submit</button>
-    </form>
-
-    <table id="activityFeed-table"></table>
-  </section>
-
-  <section id="userMessages" class="query">
-    <h1>Buscar mensagens dos matches de um usuário.</h1>
-    <form>
-      <label for="userMessages-userid">Id do usuário</label> <input id="userMessages-userid" name="userid" type="text">
-      <button type="submit">Submit</button>
-    </form>
-
-    <table id="userMessages-table"></table>
-  </section>
-
-  <section id="noCommonGenresUsers" class="query">
-    <h1>Buscar usuários que não possuem gêneros em comum com um usuário.</h1>
-    <form>
-      <label for="noCommonGenresUsers-userid">Id do usuário</label> <input id="noCommonGenresUsers-userid" name="userid" type="text">
-      <button type="submit">Submit</button>
-    </form>
-
-    <table id="noCommonGenresUsers-table"></table>
-  </section>
-
-  <section id="userGames" class="query">
-    <h1>Buscar detalhes dos games de um usuário.</h1>
-    <form>
-      <label for="userGames-userid">Id do usuário</label> <input id="userGames-userid" name="userid" type="text">
-      <button type="submit">Submit</button>
-    </form>
-
-    <table id="userGames-table"></table>
-  </section>
-
   <script src="fetchQueries.js"></script>
+  <script src="autocomplete.js"></script>
 </body>
 </html>
