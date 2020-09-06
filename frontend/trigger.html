@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert | Stinder</title>
+</head>
+<body>
+  <main>
+    
+  </main>
+
+  <h1>Stinder</h1>
+
+  <h2>Insert</h2>
+
+  <section id="insertClassification" class="query">
+    <h1>Inserir nova classificação:<h1>
+    <form>
+      <label for="classification-userfrom">Id do usuário que classifica</label> <input id="classification-userfrom" name="userfrom" type="text">
+      <br>
+      <label for="classification-userto">Id do usuário classificado</label> <input id="classification-userto" name="userto" type="text">
+      <br>
+      <label for="classification-type">Tipo da classificação</label> <input id="classification-type" name="type" type="text">
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+    <h2>Classification before insert</h2>
+    <table id="classification-before"></table>
+    <h2>Classification after insert</h2>
+    <table id="classification-after"></table>
+    <h2>Match before insert</h2>
+    <table id="match-before"></table>
+    <h2>Match after insert</h2>
+    <table id="match-after"></table>
+  </section>
+
+  <script src="fetchInsert.js"></script>
+</body>
+</html>

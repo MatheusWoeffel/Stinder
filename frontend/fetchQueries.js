@@ -33,6 +33,8 @@ const noCommonGenres = document.querySelector('#noCommonGenresUsers');
 
 const userGames = document.querySelector('#userGames');
 
+const insertClassification = document.querySelector("#insertClassification");
+
 const getSanitizedInputFrom = (inputElement) => {
     //TODO: Sanitize SQL statements
     //Question: It's better to sanitize at both ends or just at backend?
