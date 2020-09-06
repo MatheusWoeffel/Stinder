@@ -3,38 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;1,200;1,400&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a31f619e24.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
   <title>Insert | Stinder</title>
 </head>
 <body>
+  <header class="header">
+    <div class="header__logoMenuWrap">
+        <h1 class="header__title">Stinder</h1>
+        <button class="header__menu"><i class="fas fa-bars"></i></button>
+    </div>
+    <nav class="header__nav">
+        <ul class="header__navList">
+            <li class="header__navItem"><a class="header__navLink" href="index.html">Consultas</a></li>
+            <li class="header__navItem header__navItem--highlighted"><a class="header__navLink" href="trigger.html">Gatilho</a></li>
+        </ul>
+    </nav>
+</header>
   <main>
-    
+
+    <h2>Insert</h2>
+
+    <section id="insertClassification" class="query">
+      <h1>Inserir nova classificação:<h1>
+      <form>
+        <label for="classification-userfrom">Id do usuário que classifica</label> <input id="classification-userfrom" name="userfrom" type="text">
+        <br>
+        <label for="classification-userto">Id do usuário classificado</label> <input id="classification-userto" name="userto" type="text">
+        <br>
+        <label for="classification-type">Tipo da classificação</label> <input id="classification-type" name="type" type="text">
+        <br>
+        <button type="submit">Submit</button>
+      </form>
+      <h2>Classification before insert</h2>
+      <table id="classification-before"></table>
+      <h2>Classification after insert</h2>
+      <table id="classification-after"></table>
+      <h2>Match before insert</h2>
+      <table id="match-before"></table>
+      <h2>Match after insert</h2>
+      <table id="match-after"></table>
+    </section>
   </main>
-
-  <h1>Stinder</h1>
-
-  <h2>Insert</h2>
-
-  <section id="insertClassification" class="query">
-    <h1>Inserir nova classificação:<h1>
-    <form>
-      <label for="classification-userfrom">Id do usuário que classifica</label> <input id="classification-userfrom" name="userfrom" type="text">
-      <br>
-      <label for="classification-userto">Id do usuário classificado</label> <input id="classification-userto" name="userto" type="text">
-      <br>
-      <label for="classification-type">Tipo da classificação</label> <input id="classification-type" name="type" type="text">
-      <br>
-      <button type="submit">Submit</button>
-    </form>
-    <h2>Classification before insert</h2>
-    <table id="classification-before"></table>
-    <h2>Classification after insert</h2>
-    <table id="classification-after"></table>
-    <h2>Match before insert</h2>
-    <table id="match-before"></table>
-    <h2>Match after insert</h2>
-    <table id="match-after"></table>
-  </section>
-
+  <script src="header.js"></script>
   <script type ="module" src="fetchQueries.js"></script>
   <script type ="module" src="trigger.js"></script>
 </body>
