@@ -257,6 +257,7 @@ routes.get('/classifications', async (request, response) => {
 
 routes.post('/addClassification', async (request, response) => {
   try {
+    console.log(request.body);
     const { userfrom, userto, type } = request.body;
 
     const result = await addClassification({ userfrom, userto, type });
