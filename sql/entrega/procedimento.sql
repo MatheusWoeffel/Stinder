@@ -1,3 +1,14 @@
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+--------------------------  TRIGGER -------------------------------
+-------------------------------------------------------------------
+
+-- Esse trigger é executado sempre logo após que uma nova classificação é realizada.
+-- Ele verifica se com a classificação que foi inserida, algum match foi formado.
+-- Ou seja, ele verifica se a pessoa que classificou já possui uma classificação
+-- feita pelo usuário que ele acabou de classificar. Caso ambas classificações
+-- tenham sido positivas ('S'-Superlike ou 'L'-Like), um match é formado inserindo
+-- uma nova linha na tabela de Match.
 CREATE FUNCTION checkForMatches() RETURNS TRIGGER AS $$
 BEGIN
   IF NEW.type != 'd' THEN
