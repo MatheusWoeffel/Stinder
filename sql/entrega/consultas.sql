@@ -47,7 +47,7 @@ INNER JOIN Match ON Match.id = M.match
 WHERE Match.userOne = 2 OR Match.userTwo = 2
 ORDER BY Match.id, M.createdAt DESC;
 
-
+-- Título: Usuários sugeridos para um dado usuário que tenham gêneros em comum.
 -- Funcionalidade: Essa consulta retorna os dados dos usuários que não ainda não foram classificados pelo usuário logado E que
 -- possuam algum gênero de jogo em comum.
 -- Objetivo: O intuito dessa consulta seria trazer os IDs de usuários que podem ser mostrados durante a classificação de um dado usuário, para
@@ -96,8 +96,10 @@ WHERE id != 4 AND NOT EXISTS(
 
 
 
---Todos os achievements em comum entre dois usuários. 
---Matheus
+-- Título: Achievements em comum entre dois usuários.
+-- Funcionalidade: Essa consulta retorna todos os achievements em comum entre dois usuários.
+-- Objetivo: O intuito dessa consulta seria descobrir que achievements dois usuários já atingiram, sendo essa informação mostrada no card
+-- do usuário mostrado, servindo como potenciais assuntos que os dois usuários podem conversar sobre.
 SELECT AppUser.name, Achievement.name, Game.name as gamename, Achievement.thumbnail, Achievement.description 
 FROM UserAchievement
 JOIN Achievement ON Achievement.id = UserAchievement.achievement
@@ -136,9 +138,10 @@ WHERE A.userid IN (
 )
 ORDER BY A.createdAt DESC;
 
--- Porcentagem de achievements completados por usuário para algum jogo
--- TODO: pegar de todos os jogos?
---Matheus
+-- Título: Buscar porcentagem de completamento de achievements de um dado jogo
+-- Funcionalidade: Essa consulta retorna a porcentagem de completamento dos achievements de um dado jogo para um dado usuário.
+-- Objetivo: O intuito dessa consulta seria mostrar o quanto um usuário já completou de um dado jogo, dando uma informação do nível de "expertise"
+-- do usuário naquele dado jogo.
 SELECT CAST(COUNT(UserAchievement.achievement) AS float)
         /
         CAST((SELECT COUNT(Achievement.id) AS num_achievements 
@@ -172,9 +175,10 @@ GROUP BY Genre.name
 HAVING SUM(UserGame.hoursPlayed) >= 1000
 ORDER BY SUM(UserGame.hoursPlayed) DESC;
 
-
--- Mensagens de um dado usuário que contem uma dada palavra
---Matheus
+-- Título: Buscar Mensagem de um usuário por substring
+-- Funcionalidade: Essa consulta retorna as mensagens enviadas por um dado usuário, que contém uma determinada substring.
+-- Objetivo: O intuito dessa consulta seria trazer mensagens enviadas de um dado usuário com potenciais palavras ofensivas, para que 
+-- em caso de denúncia, possa-se avaliar o comportamento do usuário.
 SELECT  BasicUserDetail.userId AS userId, BasicUserDetail.name AS senderName, Match.id AS matchId, Message.text AS messageText
 FROM Message 
 JOIN BasicUserDetail ON BasicUserDetail.userid = Message.sender
@@ -198,10 +202,12 @@ WHERE UG.hoursplayed > 0 AND UG.userid = 1
 ORDER BY UG.lastPlayedDate;
 
 
--- SUGESTAO: Buscar o 10 usuarios mais "famosos" do momento
--- Os 10 usuarios com a quantidade de likes superior a media de likes por usuario
--- Tem como alterar a consulta para contabilizar apenas os likes realizados nos ultimos 7 dias, por exemplo.
---Matheus
+-- Título: Top Usuários do Momento
+-- Funcionalidade: Essa consulta retorna os usuários mais bem classificados do aplicativo. Os 10 usuarios com a quantidade de likes superior a media de likes por usuario
+-- Objetivo: O intuito dessa consulta seria mostrar "top users" em uma seção específica do aplicativo, como recomendação de usuários
+-- para membros Gold.
+
+--Utilizamos essa view para facilitar a consulta posterior. Ela retorna o total de classificações por usuário, e o número de classificações positivas.
 DROP VIEW IF EXISTS UserLikeTotal;
 
 CREATE VIEW UserLikeTotal AS 
