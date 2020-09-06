@@ -112,13 +112,6 @@ AND Achievement.id IN (SELECT Achievement
   										WHERE AppUser.name = 'Matheus Woeffel' --Second user name
 											);
 
-
-
--- Atividades dos match de um determinado user.
--- Utilizado na tela de Feed para visualizar as atividade que foram realizadas pelos matches do usuário logado
--- TODO: Talvez colocar para filtrar por nome ao inves de id?
---Alencar
-
 -- Título: Buscar feed de atividades dos matches de um usuário.
 -- Funcionalidade: Essa consulta irá buscar todas informações relevantes sobre as
 -- atividades realizadas pelos matches de um usuário.
@@ -139,9 +132,10 @@ WHERE A.userid IN (
 ORDER BY A.createdAt DESC;
 
 -- Título: Buscar porcentagem de completamento de achievements de um dado jogo
--- Funcionalidade: Essa consulta retorna a porcentagem de completamento dos achievements de um dado jogo para um dado usuário.
--- Objetivo: O intuito dessa consulta seria mostrar o quanto um usuário já completou de um dado jogo, dando uma informação do nível de "expertise"
--- do usuário naquele dado jogo.
+-- Funcionalidade: Essa consulta retorna a porcentagem de completamento dos achievements de um dado 
+-- jogo para um dado usuário.
+-- Objetivo: O intuito dessa consulta seria mostrar o quanto um usuário já completou de um dado jogo, 
+-- dando uma informação do nível de "expertise" do usuário naquele dado jogo.
 SELECT CAST(COUNT(UserAchievement.achievement) AS float)
         /
         CAST((SELECT COUNT(Achievement.id) AS num_achievements 
@@ -176,9 +170,10 @@ HAVING SUM(UserGame.hoursPlayed) >= 1000
 ORDER BY SUM(UserGame.hoursPlayed) DESC;
 
 -- Título: Buscar Mensagem de um usuário por substring
--- Funcionalidade: Essa consulta retorna as mensagens enviadas por um dado usuário, que contém uma determinada substring.
--- Objetivo: O intuito dessa consulta seria trazer mensagens enviadas de um dado usuário com potenciais palavras ofensivas, para que 
--- em caso de denúncia, possa-se avaliar o comportamento do usuário.
+-- Funcionalidade: Essa consulta retorna as mensagens enviadas por um dado usuário, 
+-- que contém uma determinada substring.
+-- Objetivo: O intuito dessa consulta seria trazer mensagens enviadas de um dado usuário 
+-- com potenciais palavras ofensivas, para que em caso de denúncia, possa-se avaliar o comportamento do usuário.
 SELECT  BasicUserDetail.userId AS userId, BasicUserDetail.name AS senderName, Match.id AS matchId, Message.text AS messageText
 FROM Message 
 JOIN BasicUserDetail ON BasicUserDetail.userid = Message.sender
@@ -203,11 +198,13 @@ ORDER BY UG.lastPlayedDate;
 
 
 -- Título: Top Usuários do Momento
--- Funcionalidade: Essa consulta retorna os usuários mais bem classificados do aplicativo. Os 10 usuarios com a quantidade de likes superior a media de likes por usuario
--- Objetivo: O intuito dessa consulta seria mostrar "top users" em uma seção específica do aplicativo, como recomendação de usuários
--- para membros Gold.
+-- Funcionalidade: Essa consulta retorna os usuários mais bem classificados do aplicativo. 
+-- Os 10 usuarios com a quantidade de likes superior a media de likes por usuario.
+-- Objetivo: O intuito dessa consulta seria mostrar "top users" em uma seção específica do aplicativo, 
+-- como recomendação de usuários para membros Gold.
 
---Utilizamos essa view para facilitar a consulta posterior. Ela retorna o total de classificações por usuário, e o número de classificações positivas.
+--Utilizamos essa view para facilitar a consulta posterior. 
+--Ela retorna o total de classificações por usuário, e o número de classificações positivas.
 DROP VIEW IF EXISTS UserLikeTotal;
 
 CREATE VIEW UserLikeTotal AS 
