@@ -175,6 +175,10 @@ section{
   color: black;
 }
 
+label:nth-of-type(even){
+  margin-left: 20px;
+}
+
 input{
   border-radius: 5px;
   padding: 5px;
@@ -187,6 +191,7 @@ input{
   box-sizing: border-box;
   transition: all 0.1s ease-in-out;
   transition-duration: 0.4s;
+  margin-left: 20px;
 }
 
 
@@ -220,4 +225,9 @@ input:focus{
 
 .query__title{
   color: #F08C00;
+}
+
+.pageTitle{
+  font-size: 30px;
+  margin-bottom: 10vh;
 }
