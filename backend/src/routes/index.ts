@@ -8,6 +8,7 @@ import getUserGames from '../db/queries/getUserGames';
 
 import getMatches from '../db/queries/trigger/getMatches';
 import addClassification from '../db/queries/trigger/addClassification';
+import getClassifications from '../db/queries/trigger/getClassifications';
 
 const routes = Router();
 
@@ -239,6 +240,15 @@ routes.get('/userGames/:id', async (request, response) => {
 routes.get('/matches', async (request, response) => {
   try {
     const result = await getMatches();
+    return response.json(result);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
+});
+
+routes.get('/classifications', async (request, response) => {
+  try {
+    const result = await getClassifications();
     return response.json(result);
   } catch (error) {
     return response.status(400).json({ error: error.message });
