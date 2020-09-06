@@ -21,7 +21,7 @@ insertClassification.querySelector('form').addEventListener('submit', async (e) 
     populateTableFrom(beforeMatchData,beforeMatchTable);
 
     let insertData = getDataFromForm(insertClassification.querySelector('form'));
-    fetch(`${API_PATH}/addClassification`,{
+    await fetch(`${API_PATH}/addClassification`,{
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(insertData),
