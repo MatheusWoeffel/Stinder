@@ -173,8 +173,16 @@ section{
   overflow-x: auto;
   background-color: white;
   color: black;
-
 }
+.query--block label:nth-last-of-type(even){
+  margin-left: 0px;
+}
+
+.query--block input{
+  display: block;
+  margin-left: 0px;
+}
+
 label{
   font-size: 15px;
   font-weight: 400;
@@ -199,13 +207,9 @@ input{
   margin-left: 20px;
 }
 
-
-
 input:focus{
   border-color: #FD5068;
 }
-
-
 
 .submit{
   margin: 3vh 0px;
@@ -236,3 +240,8 @@ input:focus{
   font-size: 30px;
   margin-bottom: 10vh;
 }
+
+td{
+  max-height: 100px;
+}
+
