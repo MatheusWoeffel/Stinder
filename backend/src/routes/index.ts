@@ -6,6 +6,10 @@ import getNoCommonGenresUsers from '../db/queries/getNoCommonGenresUsers';
 import getUserActivityFeed from '../db/queries/getUserActivityFeed';
 import getUserGames from '../db/queries/getUserGames';
 
+import getMatches from '../db/queries/trigger/getMatches';
+import addClassification from '../db/queries/trigger/addClassification';
+import getClassifications from '../db/queries/trigger/getClassifications';
+
 const routes = Router();
 
 routes.post('/hello', (request, response) => {
@@ -227,6 +231,35 @@ routes.get('/userGames/:id', async (request, response) => {
   try {
     const { id } = request.params;
     const result = await getUserGames(Number(id));
+    return response.json(result);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
+});
+
+routes.get('/matches', async (request, response) => {
+  try {
+    const result = await getMatches();
+    return response.json(result);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
+});
+
+routes.get('/classifications', async (request, response) => {
+  try {
+    const result = await getClassifications();
+    return response.json(result);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
+});
+
+routes.post('/addClassification', async (request, response) => {
+  try {
+    const { userfrom, userto, type } = request.body;
+
+    const result = await addClassification({ userfrom, userto, type });
     return response.json(result);
   } catch (error) {
     return response.status(400).json({ error: error.message });

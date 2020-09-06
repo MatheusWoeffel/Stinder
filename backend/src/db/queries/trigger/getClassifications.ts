@@ -9,7 +9,7 @@ interface Classification {
 
 async function getClassifications(): Promise<Classification[]> {
   try {
-    const select = `SELECT * FROM Classification`;
+    const select = 'SELECT * FROM Classification';
 
     const result = await query<Classification>(select, []);
 
