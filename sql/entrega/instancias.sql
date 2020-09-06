@@ -208,6 +208,8 @@ INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('The Star of
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('One of a Kind', 'Equip a Unique item.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/238960/cba68127f72c1920934fec0215ed0f82ab7258fd.jpg', 3);
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('Cryomancer', 'Shatter 5 monsters with a single action.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/238960/e4e6440cd98a0f08f7906290fc952f6984b34867.jpg', 3);
 
+
+
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('nilo17@live.com', '70xZO9l6MvYEQGdd', 'Nilo Reis', '1966-9-9', 'Ut totam esse autem accusantium omnis quo nulla in aliquid. Odit aut et consequatur autem repellat qui dignissimos sed exercitationem. Beatae officiis ea quia.', 'm');
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('tainara_braga@yahoo.com', '6ZZyXrNRz8GQ1b4P', 'Tainara Braga', '1980-9-16', 'Nulla earum nesciunt libero et odit iure ipsum magnam. Consequatur dolores quae. Expedita eum eos enim. Sint quia porro vitae non. Inventore praesentium sequi quidem est placeat similique voluptates vel quisquam. Dolor est voluptas amet reprehenderit omnis aliquid.', 'f');
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('belmiro44@bol.com.br', '4ET0KmP9ocB9bh7l', 'Belmiro Costa', '1969-9-26', 'Est omnis officia molestias dolorem sint eius repellendus quisquam minus. Aut explicabo rerum perferendis vitae facilis culpa laudantium qui deserunt. Qui est at ipsam est maxime. Amet fuga nam quidem mollitia impedit non.', 'm');
