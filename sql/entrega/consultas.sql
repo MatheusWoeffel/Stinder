@@ -38,7 +38,7 @@ INNER JOIN Match ON Match.id = M.match
 WHERE Match.userOne = 2 OR Match.userTwo = 2
 ORDER BY Match.id, M.createdAt DESC;
 
-
+-- Título: Usuários sugeridos para um dado usuário que tenham gêneros em comum.
 -- Funcionalidade: Essa consulta retorna os dados dos usuários que não ainda não foram classificados pelo usuário logado E que
 -- possuam algum gênero de jogo em comum.
 -- Objetivo: O intuito dessa consulta seria trazer os IDs de usuários que podem ser mostrados durante a classificação de um dado usuário, para
@@ -82,11 +82,10 @@ WHERE id != 4 AND NOT EXISTS(
 
 
 
---Todos os achievements em comum entre dois usuários. 
+-- Título: Achievements em comum entre dois usuários.
 -- Funcionalidade: Essa consulta retorna todos os achievements em comum entre dois usuários.
 -- Objetivo: O intuito dessa consulta seria descobrir que achievements dois usuários já atingiram, sendo essa informação mostrada no card
 -- do usuário mostrado, servindo como potenciais assuntos que os dois usuários podem conversar sobre.
---Matheus
 SELECT AppUser.name, Achievement.name, Game.name as gamename, Achievement.thumbnail, Achievement.description 
 FROM UserAchievement
 JOIN Achievement ON Achievement.id = UserAchievement.achievement
@@ -119,6 +118,7 @@ WHERE A.userid IN (
 )
 ORDER BY A.createdAt DESC;
 
+-- Título: Buscar porcentagem de completamento de achievements de um dado jogo
 -- Funcionalidade: Essa consulta retorna a porcentagem de completamento dos achievements de um dado jogo para um dado usuário.
 -- Objetivo: O intuito dessa consulta seria mostrar o quanto um usuário já completou de um dado jogo, dando uma informação do nível de "expertise"
 -- do usuário naquele dado jogo.
@@ -152,7 +152,7 @@ GROUP BY Genre.name
 HAVING SUM(UserGame.hoursPlayed) >= 1000
 ORDER BY SUM(UserGame.hoursPlayed) DESC;
 
-
+-- Título: Buscar Mensagem de um usuário por substring
 -- Funcionalidade: Essa consulta retorna as mensagens enviadas por um dado usuário, que contém uma determinada substring.
 -- Objetivo: O intuito dessa consulta seria trazer mensagens enviadas de um dado usuário com potenciais palavras ofensivas, para que 
 -- em caso de denúncia, possa-se avaliar o comportamento do usuário.
@@ -176,6 +176,7 @@ WHERE UG.hoursplayed > 0 AND UG.userid = 1
 ORDER BY UG.lastPlayedDate;
 
 
+-- Título: Top Usuários do Momento
 -- Funcionalidade: Essa consulta retorna os usuários mais bem classificados do aplicativo. Os 10 usuarios com a quantidade de likes superior a media de likes por usuario
 -- Objetivo: O intuito dessa consulta seria mostrar "top users" em uma seção específica do aplicativo, como recomendação de usuários
 -- para membros Gold.
