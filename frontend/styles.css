@@ -173,6 +173,11 @@ section{
   overflow-x: auto;
   background-color: white;
   color: black;
+
+}
+label{
+  font-size: 15px;
+  font-weight: 400;
 }
 
 label:nth-of-type(even){
