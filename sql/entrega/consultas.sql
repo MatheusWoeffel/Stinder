@@ -1,9 +1,14 @@
--- VISÃO
--- View que relaciona os detalhes/informações basicos de um usuário.
--- Essas são as informações que aparecem no card de cada usuário durante a classificaçÀo.
--- Ao clicar em um card, um nova consulta será realizada buscando todas as informações do usuário.
--- Essa consulta trás as informações de nome, udadem decrição, genêro E a ÚLTIMA foto postada.
--- Ela assume que a última foto postada é aquela que será exibida como "foto de perfil" principal/atual.
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+--------------------------  VIEW ----------------------------------
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+-- Funcionalidade: Essa view relaciona os detalhes/informações básicas e públicas de um usuário.
+-- Trazendo tanto informações sobre o perfil, como se o usuário é ou não um usuário Gold e sua
+-- última foto de perfil postada no Stinder, assumindo essa como sendo principal.
+-- Objetivo: A view será importante, pois esses são exatamente os principais dados de um usuário
+-- que serão apresentados aos outros durante a classificação de usuários. Além de conter informações
+-- úteis para as páginas de chat do aplicativo.
 DROP VIEW BasicUserDetail;
 
 CREATE VIEW BasicUserDetail AS 
@@ -23,14 +28,18 @@ CREATE VIEW BasicUserDetail AS
 
 
 
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+--------------------------  CONSULTAS -----------------------------
+-------------------------------------------------------------------
+-------------------------------------------------------------------
 
--- CONSULTAS
--- Essa consulta utiliza a VIEW anterior para buscar as mensagens de todos os matches de um usuário (logado)
--- A consulta trás as info como dados da mensagem enviada, match associado E as informações do usuário que enviou.
--- Sobre o usuário que buscou, é retornado o nome e a foto principal.
-
-
---Alencar
+-- Título: Buscar mensagens dos matches de um usuário.
+-- Funcionalidade: Essa consulta busca todas mensagens do matches de um usuário,
+-- bem como informações básicas sobre o usuário que enviou, para isso utiliza-se
+-- da view BasicUserDetail. Filtrando assim pelo ID do usuário (provavelmente logado no app).
+-- Objetivo: Exibir todos os matches de um usuário na tela e ao selecionar, exibir
+-- as mensagens trocada com o usuário do match.
 SELECT M.id, M.match, M.text, M.createdAt, B.userId, B.name, B.photoId, B.url
 FROM Message M
 INNER JOIN BasicUserDetail B ON B.userId = M.sender
@@ -68,7 +77,12 @@ ORDER BY B.userid;
 
 
 --Todos os usuários que não tem nenhum gênero em comum, o intuito desta consulta seria filtrar
---Alencar
+-- Título: Buscar usuários que não possuem gêneros em comum com um usuário.
+-- Funcionaliade: Essa consulta busca o id e o nome de todos os usuários que não
+-- possuem jogos com nenhum gênero em comum.
+-- Objetivo: Filtrar aqueles usuário que não possuem gostos/interesses em comum e que
+-- portanto não devem ser apresentados para o usuário pelo qual estamos filtrando.
+-- Essa consulta seria utilizada pelo algoritmo de recomendação de usuário para classificar.
 SELECT id, name 
 FROM AppUser AS EXT 
 WHERE id != 4 AND NOT EXISTS(
@@ -78,7 +92,7 @@ WHERE id != 4 AND NOT EXISTS(
                                   FROM UserGame 
                                   JOIN GameGenre ON GameGenre.game = UserGame.game
                                   WHERE userId = 4)
-); --Necessário para o caso do usuário em questão não possuir jogos.(Vai dar "unmatch" em todos exceto nele mesmo);
+);
 
 
 
@@ -102,6 +116,12 @@ AND Achievement.id IN (SELECT Achievement
 -- Utilizado na tela de Feed para visualizar as atividade que foram realizadas pelos matches do usuário logado
 -- TODO: Talvez colocar para filtrar por nome ao inves de id?
 --Alencar
+
+-- Título: Buscar feed de atividades dos matches de um usuário.
+-- Funcionalidade: Essa consulta irá buscar todas informações relevantes sobre as
+-- atividades realizadas pelos matches de um usuário.
+-- Objetivo: Consultar as atividades recentes realizadas pelos matches do usuário
+-- logado no aplicativo para compor a tela do feed de atividades.
 SELECT A.id activity, A.type, A.createdAt, A.userid userId, U.name, G.id gameId, G.name gamename, G.thumbnail gameThumb, P.id photoId, P.url photoUrl
 FROM Activity A
 INNER JOIN AppUser U ON U.id = A.userid
@@ -134,10 +154,13 @@ JOIN AppUser ON UserAchievement.userId = AppUser.id
 WHERE Game.name = 'Stardew Valley' AND AppUser.name = 'Matheus Woeffel'
 GROUP BY Game.name;
 
--- Generos que o usuario mais joga. Totalizar as horas jogadas por genero e filtar (HAVING) 
--- por generos que totalizar mais do que um certo numero de horas, por exemplo 1000,
--- para classificarmos como Experts!
---Alencar
+-- Título: Gêneros que o usuário mais joga, sendo expert (horas jogadas > 1000).
+-- Funcionalidade: Buscar os gêneros de jogo que o usuário mais joga e que é considerado expert.
+-- Assim, totalizando a quantidade de horas jogadas por gênero (os quais é expert). Um usuário
+-- é considerado expert quando possui mais de 1000 horas jogadas em um determinado gênero, 
+-- por exemplo, RPG. Filtrando essas informações por usuário.
+-- Objetivo: Exibir em seu perfil público e completo quais os gêneros que o usuário é
+-- expert, essa informação pode ser o iniciador de assuntos entre os usuários.
 SELECT Genre.name, SUM(UserGame.hoursPlayed)
 FROM UserGame
 INNER JOIN AppUser ON AppUser.id = UserGame.userId
@@ -159,9 +182,12 @@ JOIN Match ON Match.id = Message.match
 WHERE BasicUserDetail.name = 'Alencar da Costa' AND (Message.text ILIKE '%Oi%');
 
 
--- TODO:Verificar se essa vai entrar e se a pesquisa vai ser por id de usuario ou nome
--- Buscar detalhes completos dos jogos de um usuário
---ALencar
+-- Título: Buscar detalhes dos games de um usuário.
+-- Funcionalidade: Buscar as informações completas dos jogos que o usuário joga
+-- filtrando por usuário e para aqueles jogos que o usuário tenha jogado por algum tempo.
+-- Objetivo: Ao clicar sobre um usuário na classificação, o seu perfil completo será 
+-- exibido e nele poderá ser visto os jogos que o usuário possui, bem como seus detalhes
+-- completos relacionados ao jogo.
 SELECT UG.userid, UG.lastPlayedDate, UG.hoursPlayed, UG.game,
 G.name gameName, G.thumbnail gameThumb, G.releaseDate, G.developer, 
 D.name developerName, D.thumbnail developerThumb
