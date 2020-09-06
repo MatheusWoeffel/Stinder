@@ -1,3 +1,4 @@
+
 import query from '../../index';
 
 interface Match {
@@ -21,3 +22,4 @@ async function getMatches(): Promise<Match[]> {
 }
 
 export default getMatches;
+

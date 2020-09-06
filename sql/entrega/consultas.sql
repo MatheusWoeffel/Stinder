@@ -29,7 +29,7 @@ CREATE VIEW BasicUserDetail AS
 -- A consulta trás as info como dados da mensagem enviada, match associado E as informações do usuário que enviou.
 -- Sobre o usuário que buscou, é retornado o nome e a foto principal.
 
--- TODO: Alterar para buscar por nome de usuario???
+
 --Alencar
 SELECT M.id, M.match, M.text, M.createdAt, B.userId, B.name, B.photoId, B.url
 FROM Message M
@@ -39,10 +39,10 @@ WHERE Match.userOne = 2 OR Match.userTwo = 2
 ORDER BY Match.id, M.createdAt DESC;
 
 
--- Essa consulta retorna os dados dos usuários que não ainda não foram classificados pelo usuário logado E que
+-- Funcionalidade: Essa consulta retorna os dados dos usuários que não ainda não foram classificados pelo usuário logado E que
 -- possuam algum gênero de jogo em comum.
--- O intuito dessa consulta seria trazer os IDs de usuários que podem ser mostrados durante a classificação
---Matheus
+-- Objetivo: O intuito dessa consulta seria trazer os IDs de usuários que podem ser mostrados durante a classificação de um dado usuário, para
+-- que sejam apresentados.
 SELECT DISTINCT B.userid, B.name, B.birthdate, B.description, B.gender, B.photoId, B.url
 FROM BasicUserDetail B
 INNER JOIN UserGame ON UserGame.userid = B.userid
@@ -67,7 +67,7 @@ ORDER BY B.userid;
 
 
 
---Todos os usuários que não tem nenhum gênero em comum
+--Todos os usuários que não tem nenhum gênero em comum, o intuito desta consulta seria filtrar
 --Alencar
 SELECT id, name 
 FROM AppUser AS EXT 
