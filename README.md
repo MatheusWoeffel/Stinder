@@ -19,3 +19,8 @@ After this, we recommend hosting the front-end at a local server for testing and
 
 ## Details
 More details about the libraries used and about the Database development itself can be viewed in the folder ```./sql/entregas```, where two pdfs (etapa1.pdf e etapa2.pdf) detail more about the development of this application.
+
+## Developers
+Developed by:
+1. Alencar da Costa https://github.com/AlencarDC
+2. Matheus Woeffel Camargo https://github.com/MatheusWoeffel
