@@ -1,5 +1,9 @@
 DROP VIEW IF EXISTS BasicUserDetail;
 DROP VIEW IF EXISTS UserLikeTotal;
+DROP TRIGGER IF EXISTS ActivityPhotoGeneration ON Photo;
+DROP FUNCTION IF EXISTS createPhotoActivity();
+DROP TRIGGER IF EXISTS ActivityGameGeneration ON UserGame;
+DROP FUNCTION IF EXISTS createGameActivity();
 DROP TRIGGER IF EXISTS Match ON classification;
 DROP FUNCTION IF EXISTS checkForMatches();
 DROP TABLE IF EXISTS message;
@@ -202,3 +206,33 @@ CREATE TRIGGER Match
 AFTER INSERT ON classification
 FOR EACH ROW
 EXECUTE PROCEDURE checkForMatches();
+
+
+
+CREATE FUNCTION createPhotoActivity() RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO Activity(userId,type,game,photo) VALUES (OLD.userId,'p',NULL,OLD.id);
+  RETURN NULL; --Gatilho after
+END
+$$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER ActivityPhotoGeneration
+AFTER INSERT ON Photo
+FOR EACH ROW
+EXECUTE PROCEDURE createPhotoActivity();
+
+
+CREATE FUNCTION createGameActivity() RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO Activity(userId,type,game,photo) VALUES (OLD.userId,'g',OLD.game,NULL);
+  RETURN NULL; --Gatilho after
+END
+$$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER ActivityGameGeneration
+AFTER INSERT ON UserGame
+FOR EACH ROW
+EXECUTE PROCEDURE createGameActivity();
+
