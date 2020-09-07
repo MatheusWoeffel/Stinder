@@ -190,6 +190,13 @@ CREATE VIEW BasicUserDetail AS
     LIMIT 1
 	);
 
+CREATE VIEW UserLikeTotal AS 
+  SELECT userTo as userId,
+  			 COUNT(*) FILTER (WHERE type != 'd') total_positives,
+         COUNT(*) total_classifications
+  FROM Classification
+  GROUP BY userTo;
+
 CREATE FUNCTION checkForMatches() RETURNS TRIGGER AS $$
 BEGIN
   IF NEW.type != 'd' THEN
@@ -206,6 +213,7 @@ CREATE TRIGGER Match
 AFTER INSERT ON classification
 FOR EACH ROW
 EXECUTE PROCEDURE checkForMatches();
+
 
 
 
