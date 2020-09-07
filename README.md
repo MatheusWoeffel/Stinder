@@ -1,4 +1,4 @@
-# Stinder
+# Stinder 💻🔥
 A database implementation of a tinder + steam app mockup. Because gamers love too.
 This repository contains a small web application to test some SQL queries implemented, consisting of a Backend implementation of a REST api as well as a frontend used to consume the API and show the result of the queries.
 ## Setup
