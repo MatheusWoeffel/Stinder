@@ -1,5 +1,4 @@
 INSERT INTO Developer(name, thumbnail) VALUES ('The Behemoth', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b4/b42a9f9540f1b5defd999f168852ef55fe550c4d_full.jpg');
-
 INSERT INTO Developer(name, thumbnail) VALUES ('Valve', 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/5f/5f4b7a6439548f5513fc72968dae2217309e3d54_full.jpg');
 INSERT INTO Developer(name, thumbnail) VALUES ('ConcernedApe', 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/ea/eaff8e24ad01c6d6a80064c8a5a46b81210492e3_full.jpg');
 INSERT INTO Developer(name, thumbnail) VALUES ('Grinding Gear Game', 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/c2/c29471ea05a4f5f32b9399e7a03614a2c580a64d_full.jpg');
@@ -7,11 +6,9 @@ INSERT INTO Developer(name, thumbnail) VALUES ('Grinding Gear Game', 'https://cd
 INSERT INTO Game(name, thumbnail, releaseDate, developer) VALUES ('Pit People®', 'https://steamcdn-a.akamaihd.net/steam/apps/291860/header.jpg?t=1591221295', '2019-12-10 08:59:18', 1);
 INSERT INTO Game(name, thumbnail, releaseDate, developer) VALUES ('BattleBlock Theater®', 'https://steamcdn-a.akamaihd.net/steam/apps/238460/header.jpg?t=1599169670', '2019-09-18 23:39:51', 1);
 INSERT INTO Game(name, thumbnail, releaseDate, developer) VALUES ('Castle Crashers®', 'https://steamcdn-a.akamaihd.net/steam/apps/204360/header.jpg?t=1598565391', '2020-03-19 04:20:42', 1);
-
 INSERT INTO Game(developer, name, thumbnail, releaseDate) VALUES (3, 'Stardew Valley', 'https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg?t=1595525376', '2016-02-26');
 INSERT INTO Game(developer, name, thumbnail, releaseDate) VALUES (2, 'Counter-Strike: Global Offensive', 'https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg?t=1592263625', '2012-08-21');
 INSERT INTO Game(developer, name, thumbnail, releaseDate) VALUES (4, 'Path of Exile', 'https://cdn.cloudflare.steamstatic.com/steam/apps/238960/header.jpg?t=1593143597', '2013-10-23');
-
 
 INSERT INTO Genre(name) VALUES ('Strategy');
 INSERT INTO Genre(name) VALUES ('RPG');
@@ -48,7 +45,6 @@ INSERT INTO Genre(name) VALUES ('Controller');
 INSERT INTO Genre(name) VALUES ('Side Scroller');
 INSERT INTO Genre(name) VALUES ('Fantasy');
 INSERT INTO Genre(name) VALUES ('Action RPG');
-
 INSERT INTO Genre(name) VALUES ('Farming Sim');
 INSERT INTO Genre(name) VALUES ('FPS');
 INSERT INTO Genre(name) VALUES ('MMORPG');
@@ -113,7 +109,6 @@ INSERT INTO GameGenre(game, genre) VALUES (3, 32);
 INSERT INTO GameGenre(game, genre) VALUES (3, 33);
 INSERT INTO GameGenre(game, genre) VALUES (3, 34);
 INSERT INTO GameGenre(game, genre) VALUES (3, 35);
-
 INSERT INTO GameGenre(game, genre) VALUES (4, 36);
 INSERT INTO GameGenre(game, genre) VALUES (4, 2);
 INSERT INTO GameGenre(game, genre) VALUES (5, 37);
@@ -192,7 +187,6 @@ INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('Animal Hand
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('Conscientious Objector', 'Complete the Home Castle through Barbarian Boss areas without attacking any foes.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/204360/4e46c6ad4029efe324e24a4cde7184bea1fa8512.jpg', 3);
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('The Final Countdown', 'Survive until 2:30 in a Back Off Barbarian match.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/204360/e5ef4ab7952566494b02109edd263cc567a4cf98.jpg', 3);
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('Arena Master', 'Win 40 Arena Online Matches.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/204360/129acacff51fa3e5f7f1167c2847828bdad1eda1.jpg', 3);
-
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('Greenhorn', 'Earn 15,000g', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/413150/dac82a85ceb1493bb2155d41890b4a6099f5eaa5.jpg', 1);
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('Cowpoke', 'Earn 50,000g', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/413150/2a5c84271214a05435ea1c7a60bacc1cbbc5fa5a.jpg', 1);
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('Fisherman', 'Catch 10 different fish.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/413150/e3c6269d906e909415d31d5b7962166c0951509d.jpg', 1);
@@ -207,8 +201,6 @@ INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('Mercy Killi
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('The Star of Wraeclast', 'Kill Merveil, the Siren.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/238960/e630c876dc24194e16eb2bcbdc936b18897ecda9.jpg', 3);
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('One of a Kind', 'Equip a Unique item.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/238960/cba68127f72c1920934fec0215ed0f82ab7258fd.jpg', 3);
 INSERT INTO Achievement(name, description, thumbnail, game) VALUES ('Cryomancer', 'Shatter 5 monsters with a single action.', 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/238960/e4e6440cd98a0f08f7906290fc952f6984b34867.jpg', 3);
-
-
 
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('nilo17@live.com', '70xZO9l6MvYEQGdd', 'Nilo Reis', '1966-9-9', 'Ut totam esse autem accusantium omnis quo nulla in aliquid. Odit aut et consequatur autem repellat qui dignissimos sed exercitationem. Beatae officiis ea quia.', 'm');
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('tainara_braga@yahoo.com', '6ZZyXrNRz8GQ1b4P', 'Tainara Braga', '1980-9-16', 'Nulla earum nesciunt libero et odit iure ipsum magnam. Consequatur dolores quae. Expedita eum eos enim. Sint quia porro vitae non. Inventore praesentium sequi quidem est placeat similique voluptates vel quisquam. Dolor est voluptas amet reprehenderit omnis aliquid.', 'f');
@@ -225,14 +217,10 @@ INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUE
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('estvo_franco88@bol.com.br', 'Sbr230YwnjXX_h2K', 'Estêvão Franco', '1963-4-11', 'Voluptate laborum a expedita excepturi reiciendis vel quod dolor. Omnis optio est magni. Nobis minima numquam maiores repellendus eum. Autem mollitia non. Non omnis harum eum iste delectus nobis. Tenetur dolore eos quo ea.', 'm');
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('lucy_albuquerque76@hotmail.com', 'dSwDQHTemiaK2arn', 'Lucy Albuquerque', '1945-5-12', 'Rem voluptatibus iure. Enim eveniet odit. Dolores et inventore asperiores.', 'f');
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('agostinho.carvalho@yahoo.com', 'Bg1MR6QbIQNvVsZs', 'Agostinho Carvalho', '1938-10-22', 'Aspernatur dolorem quas incidunt. Quod non quam sint. Laudantium fuga consequatur vitae sit est quia voluptatibus iusto.', 'm');
-
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('alencar.costa@inf.ufrgs.br', 'alencar.costa', 'Alencar da Costa', '1999-03-09', 'Soco, soco, bate, bate\nSoco, soco, vira, vira\nSoco, bate, soco, vira\nSoco, bate, vira', 'm');
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('mwcamargo@inf.ufrgs.br', 'seninhaBrabo', 'Matheus Woeffel', '1998-10-29', 'Errados são aqueles que chegam no bagulho, tá ligado? Sem saber como é a segurança do ambiente.', 'm');
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('pablovittar@gmail.com', 'seuAmorMePegou', 'Pablo Vittar', '1994-11-01', 'Seu amor me pegou\nCê bateu tão forte com o teu amor\n Nocauteou, me tonteou\n Veio à tona, fui à lona, foi K.O.', 'f');
 INSERT INTO AppUser(email, password, name, birthdate, description, gender) VALUES ('ronaldinho@gmail.com', 'ronaldinho123', 'Ronaldinho Gaúcho', '1980-03-21', 'Atualmente em reclusão, mas não somos todos presidiários do sistema?', 'm');
-
-
-
 
 
 INSERT INTO Photo(userid, url) VALUES (1, 'https://randomuser.me/api/portraits/men/79.jpg');
@@ -268,11 +256,9 @@ INSERT INTO Photo(userid, url) VALUES (14, 'https://randomuser.me/api/portraits/
 INSERT INTO Photo(userid, url) VALUES (14, 'https://randomuser.me/api/portraits/women/5.jpg');
 INSERT INTO Photo(userid, url) VALUES (14, 'https://randomuser.me/api/portraits/women/73.jpg');
 INSERT INTO Photo(userid, url) VALUES (15, 'https://randomuser.me/api/portraits/men/53.jpg');
-
 INSERT INTO Photo(userid, url, isValid) VALUES (16, 'https://avatars1.githubusercontent.com/u/16635772?s=460&u=9c2dab803275c232d8ceae334b85d14c76bb5f7e&v=4', true);
 INSERT INTO Photo(userid, url, isValid) VALUES (17, 'https://bit.ly/2DmeLer', true);
 INSERT INTO Photo(userid, url, isValid) VALUES (18, 'https://pm1.narvii.com/6781/44a59d1ed4f92109ae365c462adbc7490cc0c720v2_00.jpg', true);
-
 
 INSERT INTO UserGame(userid, game, hoursPlayed, lastPlayedDate) VALUES (1, 3, 862, '2019-10-20 19:20:42');
 INSERT INTO UserGame(userid, game, hoursPlayed, lastPlayedDate) VALUES (1, 1, 1767, '2020-01-05 23:14:41');
@@ -299,7 +285,6 @@ INSERT INTO UserGame(userid, game, hoursPlayed, lastPlayedDate) VALUES (14, 3, 7
 INSERT INTO UserGame(userid, game, hoursPlayed, lastPlayedDate) VALUES (14, 2, 2967, '2020-02-16 02:44:44');
 INSERT INTO UserGame(userid, game, hoursPlayed, lastPlayedDate) VALUES (14, 1, 558, '2019-12-10 15:39:18');
 INSERT INTO UserGame(userid, game, hoursPlayed, lastPlayedDate) VALUES (15, 3, 170, '2019-12-14 22:20:26');
-
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (16, 5, '2020-07-22 14:20:00', 1337);
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (16, 4, '2019-03-22 14:20:00', 13);
 INSERT INTO UserGame(userid, game, lastPlayedDate, hoursPlayed) VALUES (16, 6, '2020-04-21 14:20:00', 666);
@@ -352,7 +337,6 @@ INSERT INTO UserAchievement(userid, achievement, createdAt) VALUES (14, 2, '2020
 INSERT INTO UserAchievement(userid, achievement, createdAt) VALUES (14, 3, '2019-10-27 23:16:10');
 INSERT INTO UserAchievement(userid, achievement, createdAt) VALUES (15, 58, '2019-12-21 11:17:22');
 INSERT INTO UserAchievement(userid, achievement, createdAt) VALUES (15, 59, '2020-07-24 09:39:27');
-
 INSERT INTO UserAchievement(userid, achievement) VALUES (16, 76);
 INSERT INTO UserAchievement(userid, achievement) VALUES (16, 77);
 INSERT INTO UserAchievement(userid, achievement) VALUES (16, 78);
@@ -360,32 +344,89 @@ INSERT INTO UserAchievement(userid, achievement) VALUES (17, 70);
 INSERT INTO UserAchievement(userid, achievement) VALUES (17, 71);
 INSERT INTO UserAchievement(userid, achievement) VALUES (17, 72);
 
+INSERT INTO Classification(userfrom,userto,type) VALUES (17,16,'d');
+INSERT INTO Classification(userfrom,userto,type) VALUES (16,18,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (18,16,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (19,18,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (18,19,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (19,17,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (17,19,'s');
 
-INSERT INTO Activity(userId,type,game,photo) VALUES (2,'g',1,NULL);
-INSERT INTO Activity(userId,type,game,photo) VALUES (1,'p',NULL,1);
-INSERT INTO Activity(userId,type,game,photo) VALUES (3,'p',NULL,3);
-
-INSERT INTO Classification(userfrom,userto,type) VALUES (2,1,'d');
 INSERT INTO Classification(userfrom,userto,type) VALUES (1,3,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (1,8,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (1,5,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (1,9,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (1,12,'d');
+INSERT INTO Classification(userfrom,userto,type) VALUES (1,13,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (1,14,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (2,1,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (2,8,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (2,10,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (2,15,'l');
 INSERT INTO Classification(userfrom,userto,type) VALUES (3,1,'l');
-INSERT INTO Classification(userfrom,userto,type) VALUES (4,3,'l');
-INSERT INTO Classification(userfrom,userto,type) VALUES (3,4,'l');
-INSERT INTO Classification(userfrom,userto,type) VALUES (4,2,'l');
-INSERT INTO Classification(userfrom,userto,type) VALUES (2,4,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (3,5,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (3,10,'d');
+INSERT INTO Classification(userfrom,userto,type) VALUES (3,12,'d');
+INSERT INTO Classification(userfrom,userto,type) VALUES (3,14,'d');
+INSERT INTO Classification(userfrom,userto,type) VALUES (5,6,'d');
+INSERT INTO Classification(userfrom,userto,type) VALUES (5,8,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (5,10,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (5,11,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (6,11,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (6,10,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (6,5,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (6,8,'s');
+INSERT INTO Classification(userfrom,userto,type) VALUES (8,1,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (8,3,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (8,5,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (8,10,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (8,14,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (8,12,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (9,1,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (9,3,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (9,8,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (9,12,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (9,13,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (10,1,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (10,3,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (10,5,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (10,13,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (10,14,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (11,5,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (11,6,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (11,8,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (11,10,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (12,1,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (12,5,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (12,11,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (12,14,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (13,1,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (13,3,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (13,9,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (13,14,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (13,11,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (14,1,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (14,8,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (14,10,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (14,15,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (15,1,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (15,2,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (15,8,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (15,9,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (15,10,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (15,11,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (15,13,'l');
+INSERT INTO Classification(userfrom,userto,type) VALUES (15,14,'l');
 
-INSERT INTO Match(userOne,userTwo, isValid) VALUES (1,3,true);
-INSERT INTO Match(userOne,userTwo, isValid) VALUES (3,4,false);
-INSERT INTO Match(userOne,userTwo, isValid) VALUES (2,4,true);
-
-INSERT INTO Message(match,sender, text) VALUES (1,1,'Oi linda, vi que você joga cs GO');
-INSERT INTO Message(match,sender, text) VALUES (1,3,'Isso mesmo, nada peita minha awp amado');
-INSERT INTO Message(match,sender, text) VALUES (1,1,'Vamo ver então, isso é pq vc n conhece o costinha pinada violenta');
-INSERT INTO Message(match,sender, text) VALUES (3,2,'Eae. Tranquilo?');
-INSERT INTO Message(match,sender, text) VALUES (3,2,'Vi que você tem a skin da Dragon Lore');
-INSERT INTO Message(match,sender, text) VALUES (3,2,'Você dropou de caixa?');
-INSERT INTO Message(match,sender, text) VALUES (3,4,'E ae');
-INSERT INTO Message(match,sender, text) VALUES (3,4,'Não. Ganhei do menino ney');
-INSERT INTO Message(match,sender, text) VALUES (3,2,'Quer vender?');
+INSERT INTO Message(match,sender, text) VALUES (1,16,'Oi linda, vi que você joga cs GO');
+INSERT INTO Message(match,sender, text) VALUES (1,18,'Isso mesmo, nada peita minha awp amado');
+INSERT INTO Message(match,sender, text) VALUES (1,16,'Vamo ver então, isso é pq vc n conhece o costinha pinada violenta');
+INSERT INTO Message(match,sender, text) VALUES (3,17,'Eae. Tranquilo?');
+INSERT INTO Message(match,sender, text) VALUES (3,17,'Vi que você tem a skin da Dragon Lore');
+INSERT INTO Message(match,sender, text) VALUES (3,17,'Você dropou de caixa?');
+INSERT INTO Message(match,sender, text) VALUES (3,19,'E ae');
+INSERT INTO Message(match,sender, text) VALUES (3,19,'Não. Ganhei do menino ney');
+INSERT INTO Message(match,sender, text) VALUES (3,17,'Quer vender?');
 
 INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (1,'11111111111','2020-11-29','Travessa Jaguarão', 0, 'Teutônia', 'RS', '95890000');
 INSERT INTO GoldUser(userid,cpf,expiresAt,street,addressNumber,city,uf,cep) VALUES (2,'22222222222','2020-12-29','Alameda Vespúcio', 25, 'Porto Alegre', 'RS', '90550031'); 
