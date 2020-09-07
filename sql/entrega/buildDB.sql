@@ -211,7 +211,7 @@ EXECUTE PROCEDURE checkForMatches();
 
 CREATE FUNCTION createPhotoActivity() RETURNS TRIGGER AS $$
 BEGIN
-  INSERT INTO Activity(userId,type,game,photo) VALUES (OLD.userId,'p',NULL,OLD.id);
+  INSERT INTO Activity(userId,type,game,photo) VALUES (NEW.userId,'p',NULL,NEW.id);
   RETURN NULL; --Gatilho after
 END
 $$ LANGUAGE 'plpgsql';
@@ -225,7 +225,7 @@ EXECUTE PROCEDURE createPhotoActivity();
 
 CREATE FUNCTION createGameActivity() RETURNS TRIGGER AS $$
 BEGIN
-  INSERT INTO Activity(userId,type,game,photo) VALUES (OLD.userId,'g',OLD.game,NULL);
+  INSERT INTO Activity(userId,type,game,photo) VALUES (NEW.userId,'g',NEW.game,NULL);
   RETURN NULL; --Gatilho after
 END
 $$ LANGUAGE 'plpgsql';
